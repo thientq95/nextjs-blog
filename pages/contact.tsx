@@ -31,8 +31,7 @@ const ContactPage = () => {
     content: Yup.string().required("Bạn chưa nhập nội dung"),
   });
   const formOptions = { resolver: yupResolver(validationSchame) };
-  const { register, handleSubmit, reset, formState } = useForm(formOptions);
-  const { errors } = formState;
+  const { register, handleSubmit, reset, formState: { errors }  } = useForm(formOptions);
 
   const onSubmit = async (data) => {
     const res = await postData(`${server}/api/contact`, {
@@ -72,7 +71,7 @@ const ContactPage = () => {
                   <div className="col-6">
                     <label htmlFor="">Email *</label>
                     <input type="text" name="email" {...register('email')} className={`input-control ${errors.email ? 'is-invalid' : ''}`} />
-                    
+            
                   </div>
                 </div>
                 <div className="row">
