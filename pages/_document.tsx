@@ -1,15 +1,9 @@
-import Document, {
-  DocumentContext,
-  DocumentInitialProps,
-  Head,
-  Main,
-  NextScript,
-} from "next/document";
-import { Fragment } from "react";
-import { GA_TRACKING_ID } from "../utils/gtag";
+import { Fragment } from 'react'
+import Document, { Head, Main, NextScript, DocumentInitialProps, DocumentContext } from 'next/document'
+import { GA_TRACKING_ID } from '../utils/gtag';
 
 interface DocumentProps extends DocumentInitialProps {
-  isProduction: boolean;
+  isProduction: boolean
 }
 
 export default class CustomDocument extends Document<DocumentProps> {
@@ -25,13 +19,12 @@ export default class CustomDocument extends Document<DocumentProps> {
   }
 
   render() {
-    const { isProduction } = this.props
+    const { isProduction } = this.props;
     return (
       <html lang="en">
-        <Head>
-        {isProduction && (
+        {/* <Head>
+          {isProduction && (
             <Fragment>
-              {/* Global Site Tag (gtag.js) - Google Analytics */}
               <script
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
@@ -51,7 +44,7 @@ export default class CustomDocument extends Document<DocumentProps> {
               />
             </Fragment>
           )}
-        </Head>
+        </Head> */}
         <body>
           <Main />
           <NextScript />
