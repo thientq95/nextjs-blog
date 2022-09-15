@@ -1,9 +1,16 @@
-import { Fragment } from 'react'
-import Document, { Head, Main, NextScript, DocumentInitialProps, DocumentContext } from 'next/document'
-import { GA_TRACKING_ID } from '../utils/gtag';
+import { Fragment } from "react";
+import Document, {
+  Head,
+  Main,
+  NextScript,
+  DocumentInitialProps,
+  DocumentContext,
+  Html,
+} from "next/document";
+import { GA_TRACKING_ID } from "../utils/gtag";
 
 interface DocumentProps extends DocumentInitialProps {
-  isProduction: boolean
+  isProduction: boolean;
 }
 
 export default class CustomDocument extends Document<DocumentProps> {
@@ -21,8 +28,8 @@ export default class CustomDocument extends Document<DocumentProps> {
   render() {
     const { isProduction } = this.props;
     return (
-      <html lang="en">
-        {/* <Head>
+      <Html lang="en">
+        <Head>
           {isProduction && (
             <Fragment>
               <script
@@ -44,12 +51,12 @@ export default class CustomDocument extends Document<DocumentProps> {
               />
             </Fragment>
           )}
-        </Head> */}
+        </Head>
         <body>
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

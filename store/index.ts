@@ -43,7 +43,7 @@ const makeStore = ({ isServer }: {isServer: Boolean}) => {
 
 // export an assembled wrapper
 // @ts-ignore:next-line
-export const wrapper = createWrapper(makeStore, {debug: false});
+export const wrapper = createWrapper(makeStore, {debug: true});
 
 export type RootState = ReturnType<typeof store.getState>
 
