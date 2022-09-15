@@ -1,7 +1,11 @@
-import BannerFeatured from "../banner-featured";
+import error from "next/error";
+import useSWR from "swr";
 import ProductCarousel from "./carousel";
 
 const ProductFeatured = () => {
+    const fetcher = (url: string) => fetch(url).then(res => res.json);
+    const { data, error }= useSWR('/api/products', fetcher);
+    if (error) return <div>Failed to load products</div>;
     const products = [
         {
             id: 1,
