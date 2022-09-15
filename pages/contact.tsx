@@ -34,10 +34,7 @@ const ContactPage = () => {
   const { register, handleSubmit, reset, formState: { errors }  } = useForm(formOptions);
 
   const onSubmit = async (data) => {
-    const res = await postData(`${server}/api/contact`, {
-      email: data.email,
-      password: data.password,
-    });
+    const res = await postData(`${server}/api/contact`, data);
 
     console.log(res);
   };

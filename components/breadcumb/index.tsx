@@ -4,8 +4,8 @@ const Breadcumb = ({ breadcrumbs }) => {
       <div className="container">
         <ul>
           {breadcrumbs.map((item) => (
-            <li>
-              <a href="" title="">
+            <li key={item.id}>
+              <a href="" title="" >
                 {item.title}
               </a>
             </li>
@@ -14,6 +14,6 @@ const Breadcumb = ({ breadcrumbs }) => {
       </div>
     </section>
   );
-};
+}; 
 
 export default Breadcumb;
