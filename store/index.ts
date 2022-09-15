@@ -2,11 +2,14 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import cartReducer from './reducers/cart';
 
-const reducer = {};
+const reducer = {
+    cart: cartReducer
+};
 
 const rootReducer = combineReducers({
-
+    cart: cartReducer,
 });
 
 let store = configureStore({
@@ -21,7 +24,7 @@ const makeStore = ({ isServer }: {isServer: Boolean}) => {
     } else {
         const persistConfig = {
             key: 'shoppingCart',
-            whileList: [],
+            whileList: ['cart'],
             storage, // if needed, user a safer storage
         }
 
@@ -40,7 +43,7 @@ const makeStore = ({ isServer }: {isServer: Boolean}) => {
 
 // export an assembled wrapper
 // @ts-ignore:next-line
-export const wrapper = createWrapper(makeStore, {debug: true});
+export const wrapper = createWrapper(makeStore, {debug: false});
 
 export type RootState = ReturnType<typeof store.getState>
 
