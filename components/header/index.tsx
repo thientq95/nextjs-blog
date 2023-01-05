@@ -8,9 +8,7 @@ const Header = () => {
           <div className="menu-container">
             <div className="logo">
               <Link href={`/`}>
-                <a href="" title="">
-                  <img src="./images/logo-GRfood-header.png" alt="" />
-                </a>
+              <img src="./images/logo-GRfood-header.png" alt="" />
               </Link>
             </div>
             <div className="menu-content">
@@ -22,9 +20,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link href={`/products`}>
-                    <a href="" title="">
-                      Sản phẩm
-                    </a>
+                  Sản phẩm
                   </Link>
                 </li>
                 <li className="submenu">
@@ -33,47 +29,45 @@ const Header = () => {
                   </a>
                   <ul className="submenu-content">
                     <li>
-                      <a href="" title="">
+                    <Link href={`/products`}>
                         sub 1
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="" title="">
+                    <Link href={`/products`}>
                         sub 1
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="" title="">
+                    <Link href={`/products`}>
                         sub 1
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="" title="">
+                    <Link href={`/products`}>
                         sub 1
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="" title="">
+                    <Link href={`/products`}>
                         sub 1
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a href="" title="">
-                    Tin tức
-                  </a>
+                <Link href={`/posts`}>
+                        Tin tức
+                      </Link>
                 </li>
                 <li>
-                  <a href="" title="">
-                    Tuyển dụng
-                  </a>
+                <Link href={`/recruiment`}>
+                        Tuyển dụng
+                      </Link>
                 </li>
                 <li>
                   <Link href={`/contact`}>
-                    <a href="" title="">
-                      Liên hệ
-                    </a>
+                  Liên hệ
                   </Link>
                 </li>
               </ul>
@@ -81,9 +75,9 @@ const Header = () => {
             <div className="search">
               <ul>
                 <li>
-                  <a href="" title="">
-                    VI <img src="./images/VIETNAM_FLAG.png" alt="" />
-                  </a>
+                <Link href={`/`}>
+                VI <img src="./images/VIETNAM_FLAG.png" alt="" />
+                </Link>
                 </li>
               </ul>
               <div className="search-content">

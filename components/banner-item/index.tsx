@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 const BannerItem = ({ item }) => {
   return (
-    <a href="" title="">
+    <Link href="/">
       <img src={item.bannerImage} alt="" />
-    </a>
+    </Link>
   );
 };
 
