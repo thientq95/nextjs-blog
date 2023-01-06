@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -12,14 +12,20 @@ const rootReducer = combineReducers({
     cart: cartReducer,
 });
 
+const customizedMiddleware = getDefaultMiddleware({
+    serializableCheck: false
+  })
+
 let store = configureStore({
-    reducer
+    reducer,
+    middleware: customizedMiddleware,
 });
 
 const makeStore = ({ isServer }: {isServer: Boolean}) => {
     if (isServer) {
         return store = configureStore({
-            reducer
+            reducer,
+            middleware: customizedMiddleware,
         });
     } else {
         const persistConfig = {
@@ -31,7 +37,8 @@ const makeStore = ({ isServer }: {isServer: Boolean}) => {
         const persistedReducer = persistReducer(persistConfig, rootReducer);
 
         store = configureStore({
-            reducer: persistedReducer
+            reducer: persistedReducer,
+            middleware: customizedMiddleware,
         });
 
         // @ts-ignore:next-line

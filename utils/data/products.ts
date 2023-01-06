@@ -9,9 +9,7 @@ export const products = [
     currentPrice: 89.99,
     sizes: ['xl', 'l'], 
     colors: ['#000', '6F3E18', '#D4BE8D', '#FFF'],
-    images: [
-      '/images/products/product-1.jpg',
-    ],
+    images: '/images/SANPHAM-1/SANPHAM-1.png',
     punctuation: {
       countOpinions: 81,
       punctuation: 4.5,
@@ -61,16 +59,14 @@ export const products = [
   },
   {
     id: '2',
-    name: 'T-Shirt Summer Vibes',
+    name: 'Nước Chanh Dây Nha Đam Yến',
     price: 119.99,
     quantityAvailable: 2,
     category: 'T-shirt',
     currentPrice: 89.99,
     sizes: ['xl', 'l'], 
     colors: ['#000', '6F3E18', '#D4BE8D', '#FFF'],
-    images: [
-      '/images/products/product-2.jpg',
-    ],
+    images: '/images/SANPHAM-1/SANPHAM-2.png',
     punctuation: {
       countOpinions: 81,
       punctuation: 4.5,
@@ -127,9 +123,7 @@ export const products = [
     currentPrice: 89.99,
     sizes: ['xl', 'l'], 
     colors: ['#000', '6F3E18', '#D4BE8D', '#FFF'],
-    images: [
-      '/images/products/product-3.jpg',
-    ],
+    images: '/images/SANPHAM-1/SANPHAM-3.png',
     punctuation: {
       countOpinions: 81,
       punctuation: 4.5,

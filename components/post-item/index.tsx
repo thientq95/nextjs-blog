@@ -1,23 +1,23 @@
+import Link from "next/link";
+
 const PostItem = ({ item }) => {
   return (
     <div className="item">
-      <a href="" title="">
+      <Link href={`blog/${item.seoAlias}`} title="">
         <div className="thumb">
-          <img src="./images/news1.png" alt="" />
+          <img src={`${item.imageUrl}`} alt="" />
         </div>
         <div className="txt-content">
           <h3 className="title">
-            Coca-Cola Việt Nam chính thức ra mắt sản phẩm mới Fanta Jelly Fizz
+            { item.title }
           </h3>
-          {item.desc && (
+          {item.description && (
             <p className="desc">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took{" "}
+              { item.description }{" "}
             </p>
           )}
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
