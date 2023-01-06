@@ -5,7 +5,7 @@ const PostItem = ({ item }) => {
     <div className="item">
       <Link href={`blog/${item.seoAlias}`} title="">
         <div className="thumb">
-          <img src={`${item.imageUrl}`} alt="" />
+          <img src={`http://localhost:9091/${item.imageUrl}`} alt="" />
         </div>
         <div className="txt-content">
           <h3 className="title">

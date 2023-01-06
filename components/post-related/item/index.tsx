@@ -9,7 +9,7 @@ const PostRelatedItem = ({ item }) => {
       >
         <div className="thumb">
           <img
-            src={`${item.imageUrl}`}
+            src={`http://localhost:9091/${item.imageUrl}`}
           />
         </div>
         <div className="txt-content">
