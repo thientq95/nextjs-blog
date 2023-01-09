@@ -24,7 +24,6 @@ export default class CustomDocument extends Document<DocumentProps> {
     const response = await fetch(
       `http://localhost:9091/api/v1/web/config-theme`
     ).then((res) => res.json());
-    console.warn(response);
     return {
       ...initialProps,
       isProduction,
@@ -35,7 +34,7 @@ export default class CustomDocument extends Document<DocumentProps> {
   render() {
    
   
-    const { isProduction, configs } = this.props;
+    const { isProduction } = this.props;
     return (
       <Html lang="en">
         <Head>

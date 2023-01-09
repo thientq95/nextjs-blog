@@ -5,6 +5,8 @@ import { wrapper } from "../store";
 import * as gtag from "./../utils/gtag";
 
 import '../assets/css/style.css'
+import { useDispatch } from "react-redux";
+import { setConfigs } from "../store/reducers/config";
 
 const isProduction = process.env.NODE_ENV === "production";
 if (isProduction) {
@@ -15,7 +17,8 @@ if (isProduction) {
 
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  
+  const dispatch = useDispatch();
+  dispatch(setConfigs(pageProps.configs))
   return (
     <Fragment>
       <Component {...pageProps} />

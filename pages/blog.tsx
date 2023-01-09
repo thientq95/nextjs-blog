@@ -24,7 +24,6 @@ const BlogPage = ({ post, configs }) => {
   //   fetcher
   // );
   // const post = data && data.result as PageResult<Post>;
-  console.warn(configs)
   const breadcrumbs = [
     {
       id: 1,
