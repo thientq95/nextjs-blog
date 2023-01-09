@@ -17,13 +17,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 
-const BlogPage = ({ post }: { post: PageResult<Post> }) => {
+const BlogPage = ({ post, configs }) => {
   // const fetcher = (url: string) => fetch(url).then((res) => res.json());
   // const { data, error } = useSWR(
   //   "http://localhost:9091/api/v1/web/post?page=0&size=10",
   //   fetcher
   // );
   // const post = data && data.result as PageResult<Post>;
+  console.warn(configs)
   const breadcrumbs = [
     {
       id: 1,

@@ -19,7 +19,7 @@ export type Product = {
   id: string;
   name: string;
   images: string;
-}
+};
 
 export type Post = {
   id: number;
@@ -27,11 +27,23 @@ export type Post = {
   description: string;
   imageUrl: string;
   content: string;
-}
+};
 
 export type PageResult<T> = {
   items: T[];
   total: number;
   page: number;
   size: number;
-}
+};
+
+export type ConfigStoreType = {
+  key: string;
+  value: string;
+  name: string;
+  description: string;
+  type: string;
+  parentId: number;
+  sort: number;
+};
+
+export type ConfigType = {};

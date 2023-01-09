@@ -12,7 +12,10 @@ if (isProduction) {
   Router.events.on("routeChangeComplete", (url: string) => gtag.pageview(url));
 }
 
+
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  
   return (
     <Fragment>
       <Component {...pageProps} />

@@ -3,13 +3,16 @@ import { createWrapper } from "next-redux-wrapper";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import cartReducer from './reducers/cart';
+import configReducer from './reducers/config';
 
 const reducer = {
-    cart: cartReducer
+    cart: cartReducer,
+    config: configReducer
 };
 
 const rootReducer = combineReducers({
     cart: cartReducer,
+    config: configReducer
 });
 
 const customizedMiddleware = getDefaultMiddleware({
@@ -30,7 +33,7 @@ const makeStore = ({ isServer }: {isServer: Boolean}) => {
     } else {
         const persistConfig = {
             key: 'shoppingCart',
-            whileList: ['cart'],
+            whileList: ['cart', 'config'],
             storage, // if needed, user a safer storage
         }
 

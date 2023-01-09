@@ -1,6 +1,11 @@
+import { GetServerSideProps } from "next";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const Header = () => {
+  // const { configs } = useSelector((state: RootState)  => state.config);
+  // console.warn(configs)
   return (
     <header className="header">
       <div className="menu-main">

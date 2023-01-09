@@ -17,17 +17,18 @@ if (process.browser) {
   }
 }
 
-const HomeSlider = () => {
-  const sliders = [
-    {
-      id: 1,
-      image: "./images/slide.png",
-    },
-    {
-      id: 2,
-      image: "./images/slide.png",
-    },
-  ];
+const HomeSlider = ({ bannerTops }) => {
+  const sliders = JSON.parse(bannerTops.value);
+  // const sliders = [
+  //   {
+  //     id: 1,
+  //     image: "./images/slide.png",
+  //   },
+  //   {
+  //     id: 2,
+  //     image: "./images/slide.png",
+  //   },
+  // ];
 
   return (
     <section className="slider-home">
@@ -39,9 +40,9 @@ const HomeSlider = () => {
         slidesPerView={slidesPerView}
         className="swiper-wrapper"
       >
-        {sliders.map((item) => (
-          <SwiperSlide key={item.id}>
-            <img src={item.image} alt="" />
+        {sliders.map((item, idx) => (
+          <SwiperSlide key={idx}>
+            <img src={`http://localhost:9091/${item.image}`} alt="" />
           </SwiperSlide>
         ))}
       </Swiper>
