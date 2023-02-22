@@ -36,6 +36,25 @@ body {
     color: #fff;
 }
 
+.input__control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 10px 12px;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    transition: all 0.15s ease;
+    border: none;
+    border-bottom: 1px solid #ebebeb;
+    background: rgba(255,255,255,0.7);
+    outline: none;
+}
+
 .container {
     max-width: 1296px;
     width: 100%;
@@ -172,12 +191,4 @@ body {
 
 .category-grid .gri5 .category-grid-item .category-grid-item__info {
     padding-left: 400px;
-}
-
-.product-new-item:nth-child(odd) {
-    justify-content: flex-start;
-}
-
-.product-new-item:nth-child(even) {
-    justify-content: flex-end;
 }

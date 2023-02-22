@@ -9,7 +9,7 @@ const BlogPage = (post) => {
         {
             id: 1,
             title: "Tin tức",
-            href: "blog",
+            href: "",
         },
     ];
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 const PostItem = ({item}) => {
     return (
         <>
-            <Link href={``} title={item.title} className={`overflow-hidden rounded`}>
+            <Link href={`blog/${item.id}`} title={item.title} className={`overflow-hidden rounded`}>
                 <img src={item.image} alt={item.title} width={`100%`}/>
             </Link>
             <h3 className={`py-[15px]`}>

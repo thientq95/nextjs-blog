@@ -3,7 +3,7 @@ import Link from "next/link";
 const ProductItem = ({item}) => {
     return (
         <>
-            <Link href={`/product-detail`} className={`bg-[#FFF5F2] rounded-[3px] block mb-4 pb-[120%] relative`}>
+            <Link href={`product/${item.id}`} className={`bg-[#FFF5F2] rounded-[3px] block mb-4 pb-[120%] relative`}>
                 <img src={`${item.productImage}`} alt={`${item.name}`} className={`absolute max-w-full -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2`} />
             </Link>
             <div className={`flex flex-wrap `}>
