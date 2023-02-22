@@ -1,94 +1,100 @@
-import { GetServerSideProps } from "next";
-import useSWR from "swr";
 import Breadcumb from "../components/breadcumb";
 import PostItem from "../components/post-item";
 import Layout from "../layouts/Main";
-import { PageResult, Post } from "../types";
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch(`http://localhost:9091/api/v1/web/post?page=0&size=10`);
-  const response = await res.json();
-
-  return {
-    props: {
-      post: response.result,
-    },
-  };
-};
 
 
-const BlogPage = ({ post, configs }) => {
-  // const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  // const { data, error } = useSWR(
-  //   "http://localhost:9091/api/v1/web/post?page=0&size=10",
-  //   fetcher
-  // );
-  // const post = data && data.result as PageResult<Post>;
-  const breadcrumbs = [
-    {
-      id: 1,
-      title: "Trang chủ",
-      href: "",
-    },
-    {
-      id: 12,
-      title: "Tin tức mới nhất",
-      href: "",
-    },
-  ];
 
-  const postItem = {
-    id: 1,
-    image: "images/brand1.png",
-    title: "Coca-Cola Việt Nam chính thức ra mắt sản phẩm mới Fanta Jelly Fizz",
-    desc: ` Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took`,
-  };
+const BlogPage = (post) => {
+    const breadcrumbs = [
+        {
+            id: 1,
+            title: "Tin tức",
+            href: "blog",
+        },
+    ];
 
-  // if (error) return <div>Failed to load blogs</div>;
-  if (!post) <h1>Loading...</h1>;
-  return (
-    <Layout>
-      <Breadcumb breadcrumbs={breadcrumbs} />
-      <section className="blog-page blog-home">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-            {post && post.items.slice(0, 1).map((item) => <PostItem key={item.id} item={item} />)}
+    const postItem = [
+        {
+            id: 1,
+            image: "./images/blog.webp",
+            title: "Top 5 các thương hiệu tinh dầu uy tín trên thế giới và Việt Nam 2022",
+            date: '02/20/2023'
+        },
+        {
+            id: 2,
+            image: "./images/blog.webp",
+            title: "Tinh dầu thiên nhiên Bách Xanh chính hãng nguyên chất 100%",
+            date: '02/20/2023'
+        },
+        {
+            id: 3,
+            image: "./images/blog.webp",
+            title: "Top 5 các thương hiệu tinh dầu uy tín trên thế giới và Việt Nam 2022",
+            date: '02/20/2023'
+        },
+        {
+            id: 4,
+            image: "./images/blog.webp",
+            title: "Tinh dầu thiên nhiên Bách Xanh chính hãng nguyên chất 100%",
+            date: '02/20/2023'
+        },
+        {
+            id: 5,
+            image: "./images/blog.webp",
+            title: "Top 5 các thương hiệu tinh dầu uy tín trên thế giới và Việt Nam 2022",
+            date: '02/20/2023'
+        },
+        {
+            id: 6,
+            image: "./images/blog.webp",
+            title: "Tinh dầu thiên nhiên Bách Xanh chính hãng nguyên chất 100%",
+            date: '02/20/2023'
+        },
+        {
+            id: 7,
+            image: "./images/blog.webp",
+            title: "Top 5 các thương hiệu tinh dầu uy tín trên thế giới và Việt Nam 2022",
+            date: '02/20/2023'
+        },
+        {
+            id: 8,
+            image: "./images/blog.webp",
+            title: "Tinh dầu thiên nhiên Bách Xanh chính hãng nguyên chất 100%",
+            date: '02/20/2023'
+        },
+        {
+            id: 9,
+            image: "./images/blog.webp",
+            title: "Top 5 các thương hiệu tinh dầu uy tín trên thế giới và Việt Nam 2022",
+            date: '02/20/2023'
+        },
+        {
+            id: 10,
+            image: "./images/blog.webp",
+            title: "Tinh dầu thiên nhiên Bách Xanh chính hãng nguyên chất 100%",
+            date: '02/20/2023'
+        },
+    ];
+
+    return (
+        <Layout>
+            <Breadcumb breadcrumbs={breadcrumbs}/>
+            <div className="py-4">
+                <div className="container">
+                    <h2 className="text-center mb-[30px]">
+                        <span className="uppercase text-[#333] text-[28px] font-bold inline-block">Tin tức</span>
+                    </h2>
+                    <div className="flex flex-wrap -mx-4">
+                        {postItem.map((item) => (
+                            <div className="flex flex-col w-1/2 px-4 mb-5 lg:w-1/4 md:w-1/3">
+                                <PostItem key={item.id} item={item}></PostItem>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
-            <div className="col-lg-6">
-              <div className="item-list">
-                {post && post.items.slice(1, 5).map((item) => <PostItem key={item.id} item={item} />)}
-              </div>
-            </div>
-          </div>
-          <div className="item-list item-list2">
-          {post && post.items.slice(5, 12).map((item) => <PostItem key={item.id} item={item} />)}
-          </div>
-          <nav>
-            <ul className="pagination">
-              <li className="page-item">
-                <a className="page-link active" href="#">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </section>
-    </Layout>
-  );
+        </Layout>
+    );
 };
 
 export default BlogPage;

@@ -24,14 +24,14 @@ const configThemeSlice = createSlice({
   name: "config",
   initialState,
   reducers: {
-    setConfigs: (state, action: PayloadAction<ConfigStoreType[]>) => {
-      return {
-        ...state,
-        configs: [...action.payload],
-      };
-    }
+    // setConfigs: (state, action: PayloadAction<ConfigStoreType[]>) => {
+    //   return {
+    //     ...state,
+    //     configs: [...action.payload],
+    //   };
+    // }
   },
 });
 
-export const { setConfigs } = configThemeSlice.actions;
+// export const { setConfigs } = configThemeSlice.actions;
 export default configThemeSlice.reducer;

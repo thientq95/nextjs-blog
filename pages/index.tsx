@@ -1,33 +1,30 @@
-import { GetServerSideProps } from "next";
 import HomeIntro from "../components/home-intro";
 import HomeSlider from "../components/home-slider";
-import PostFeatured from "../components/post-featured";
 import Layout from "../layouts/Main";
+import HomeCategory from "../components/home-category";
+import HomeProductNew from "../components/home-product-new";
+import HomeAbout from "../components/home-about";
+import ProductFeatured from "../components/product-featured";
+import PostFeatured from "../components/post-featured";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch(`http://localhost:9091/api/v1/web/config-theme`);
-  const response = await res.json();
+const IndexPage = () => {
+    return (
+        <Layout>
+            <HomeSlider/>
+            <div className="main_content">
+                <HomeIntro/>
+                <HomeCategory/>
+                <HomeProductNew/>
+                <HomeAbout/>
+                <ProductFeatured/>
+                <PostFeatured/>
+            </div>
 
-  return {
-    props: {
-      configs: response.result,
-    },
-  };
-};
-
-const IndexPage = ({ configs }) => {
-  const bannerTops = configs.find(item => item.key === 'C22_BANNER_TOP');
-  return (
-    <Layout>
-      <HomeSlider bannerTops={bannerTops}/>
-      <HomeIntro />
-      <PostFeatured />
-      {/* <ProductFeatured /> */}
-      {/* <BannerFeatured /> */}
-      {/* <PartnerFeatured /> */}
-      {/* <Social /> */}
-    </Layout>
-  );
+            {/* <BannerFeatured /> */}
+            {/* <PartnerFeatured /> */}
+            {/* <Social /> */}
+        </Layout>
+    );
 };
 
 export default IndexPage;

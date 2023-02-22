@@ -16,20 +16,20 @@ interface DocumentProps extends DocumentInitialProps {
 }
 
 export default class CustomDocument extends Document<DocumentProps> {
-  static async getInitialProps(ctx: DocumentContext): Promise<DocumentProps> {
-    const initialProps = await Document.getInitialProps(ctx);
-
-    // Check if in production
-    const isProduction = process.env.NODE_ENV === "production";
-    const response = await fetch(
-      `http://localhost:9091/api/v1/web/config-theme`
-    ).then((res) => res.json());
-    return {
-      ...initialProps,
-      isProduction,
-      configs: response.result,
-    };
-  }
+  // static async getInitialProps(ctx: DocumentContext): Promise<DocumentProps> {
+  //   const initialProps = await Document.getInitialProps(ctx);
+  //
+  //   // Check if in production
+  //   const isProduction = process.env.NODE_ENV === "production";
+  //   const response = await fetch(
+  //     `http://localhost:9091/api/v1/web/config-theme`
+  //   ).then((res) => res.json());
+  //   return {
+  //     ...initialProps,
+  //     isProduction,
+  //     configs: response.result,
+  //   };
+  // }
 
   render() {
    

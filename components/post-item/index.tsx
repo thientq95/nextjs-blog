@@ -1,25 +1,21 @@
 import Link from "next/link";
 
-const PostItem = ({ item }) => {
-  return (
-    <div className="item">
-      <Link href={`blog/${item.seoAlias}`} title="">
-        <div className="thumb">
-          <img src={`http://localhost:9091/${item.imageUrl}`} alt="" />
-        </div>
-        <div className="txt-content">
-          <h3 className="title">
-            { item.title }
-          </h3>
-          {item.description && (
-            <p className="desc">
-              { item.description }{" "}
+const PostItem = ({item}) => {
+    return (
+        <>
+            <Link href={``} title={item.title} className={`overflow-hidden rounded`}>
+                <img src={item.image} alt={item.title} width={`100%`}/>
+            </Link>
+            <h3 className={`py-[15px]`}>
+                <Link href={``} title={item.title} className={`uppercase text-[#333] font-semibold text-[15px]`}>
+                    {item.title}
+                </Link>
+            </h3>
+            <p className={`text-[#a3a3a3] text-[14px]`}>
+                {item.date}
             </p>
-          )}
-        </div>
-      </Link>
-    </div>
-  );
+        </>
+    );
 };
 
 export default PostItem;

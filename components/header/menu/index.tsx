@@ -1,64 +1,54 @@
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store";
 
-const  Menu = async () => {
-  const { configs } = useSelector((state: RootState) => state.config);
-  let menu = configs.find((item) => item.key === "C22_MAIN_MENU").value as any;
-  if (menu) {
-    menu = JSON.parse(menu);
-  }
+const Menu = () => {
+    const menuItem = [
+        {
+            id: 1,
+            item: "Câu chuyện thương hiệu",
+            slug: "gioi-thieu"
+        },
+        {
+            id: 2,
+            item: "Sản phẩm",
+            slug: "products"
+        },
+        {
+            id: 3,
+            item: "Khuyến mãi",
+            slug: "khuyen-mai"
+        },
+        {
+            id: 4,
+            item: "Member",
+            slug: "thanh-vien"
+        },
+        {
+            id: 5,
+            item: "Blog",
+            slug: "blog"
+        },
+        {
+            id: 6,
+            item: "Liên hệ",
+            slug: "lien-he"
+        }
+    ];
 
-  const response = await fetch(
-    `http://localhost:9091/api/v1/web/menu/${menu.id}`
-  ).then((res) => res.json()); 
-  const menus = response.result;
-  return (
-    <ul className="menu-wapper">
-      {/* {posts && posts.map((item) => (
-          <div className="col-lg-3 col-6" key={item.id}> 
-            <PostRelatedItem item={item}/>
-          </div>
-        ))} */}
-        {menus && menus.map((item, idx) => (
-          <Link key={idx} href={`/products`}>{item.name}</Link>
-        ))} 
-      <li>
-        
-      </li>
-      {/* <li className="submenu">
-        <a href="" title="">
-          Công bố sản phẩm
-        </a>
-        <ul className="submenu-content">
-          <li>
-            <Link href={`/products`}>sub 1</Link>
-          </li>
-          <li>
-            <Link href={`/products`}>sub 1</Link>
-          </li>
-          <li>
-            <Link href={`/products`}>sub 1</Link>
-          </li>
-          <li>
-            <Link href={`/products`}>sub 1</Link>
-          </li>
-          <li>
-            <Link href={`/products`}>sub 1</Link>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <Link href={`/posts`}>Tin tức</Link>
-      </li>
-      <li>
-        <Link href={`/recruiment`}>Tuyển dụng</Link>
-      </li>
-      <li>
-        <Link href={`/contact`}>Liên hệ</Link>
-      </li> */}
-    </ul>
-  );
+    return (
+        <nav className="menubar">
+            <div className="menubar-container">
+                <div className="menu">
+                    <ul className="menu--left menu__list menu_desktop">
+                        {menuItem.map((item) => (
+                            <li className="menu__item">
+                                <Link href={`${item.slug}`} title={`${item.item}`} className="menu__link">{`${item.item}`}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    );
 };
 
 export default Menu;
