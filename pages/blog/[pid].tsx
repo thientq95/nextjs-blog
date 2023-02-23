@@ -39,9 +39,11 @@ const BlogDetailPage = () => {
             <section className={`flex flex-wrap justify-between pt-5 mb-5 `}>
                 <div className={`container`}>
                     <h1 className={`text-center text-[30px] mb-[20px]`}>QUE KHUẾCH TÁN TINH DẦU LÀ GÌ? LỰA CHỌN, CÔNG DỤNG VÀ CÁCH DÙNG</h1>
-                    <div className={`content-main`}></div>
+                    <div className={`content-main`}>
+                        Nội dung bài viết
+                    </div>
                     <div className={`p-3 my-3 rounded bg-[#fafafa]`}>
-                        {/*<PostRelated post={post}/>*/}
+                        <PostRelated/>
                     </div>
                 </div>
             </section>

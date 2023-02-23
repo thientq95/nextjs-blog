@@ -1,13 +1,6 @@
-import Breadcumb from '../components/breadcumb';
-import Layout from '../layouts/Main';
-import ProductItem from "../components/product-item";
+import ProductItem from "../product-item";
 
-const ProductPage = () => {
-    const breadcrumbs = [{
-        id: 1,
-        title: 'Sản phẩm',
-        href: 'products'
-    }];
+const ProductRelated = () => {
     const products = [
         {
             id: 1,
@@ -83,24 +76,15 @@ const ProductPage = () => {
         },
     ];
     return (
-        <Layout>
-            <Breadcumb breadcrumbs={breadcrumbs}/>
-            <div className="py-4">
-                <div className="container">
-                    <h2 className="text-center mb-[30px]">
-                        <span className="uppercase text-[#333] text-[28px] font-bold inline-block">Sản phẩm</span>
-                    </h2>
-                    <div className="flex flex-wrap -mx-4">
-                        {products.map((item) => (
-                            <div className="flex flex-col w-1/2 px-4 mb-5 lg:w-1/5 md:w-1/3">
-                                <ProductItem key={item.id} item={item}/>
-                            </div>
-                        ))}
+        <>
+            <div className="flex flex-wrap -mx-4">
+                {products.slice(0,4).map((item) => (
+                    <div className="flex flex-col w-1/2 px-4 mb-5 lg:w-1/4 md:w-1/3">
+                        <ProductItem key={item.id} item={item}/>
                     </div>
-                </div>
+                ))}
             </div>
-        </Layout>
+        </>
     )
-}
-
-export default ProductPage;
+};
+export default ProductRelated;

@@ -33,20 +33,17 @@ const HomeProductNew = () => {
     ];
 
     return (
-        <section className="overflow-x-hidden product-new-home py-[70px]">
+        <section className="overflow-x-hidden py-[70px]">
             <div className="container">
                 <div className="mb-8">
-                    <div className="flex flex-nowrap justify-center items-center mb-0"><span
+                    <div className="flex justify-center items-center mb-0"><span
                         className="font-bold text-xl lg:text-[36px] uppercase leading-normal text-center w-fit block"> các dòng sản phẩm mới của </span>
                     </div>
-                    <div className="flex items-center justify-center flex-nowrap"><img
-                        src={`./images/idx-tit.png`}
-                        className="max-w-[190px] lg:max-w-none -mr-[100px]" alt="icon"/></div>
                 </div>
                 <div className="flex flex-wrap md:block">
                     {productItem.map((item) => (
-                        <div className="basis-1/2 flex odd:justify-start even:justify-end">
-                            <div className="max-w-[800px] flex items-center justify-between flex-wrap">
+                        <div className="flex w-full mb-[30px] md:mb-0 md:basis-1/2 odd:justify-start even:justify-end">
+                            <div className="w-full max-w-[800px] flex flex-col md:flex-row items-center justify-between">
                                 <div className="relative md:p-[10px] flex flex-col items-center">
                                     <img src={`./images/circle_bg.png`} alt="bg" className="relative z-20 block"/>
                                     <img src={`./images/circle_blur.png`} alt="blur" className="relative z-10 block -mt-2"/>
@@ -65,7 +62,7 @@ const HomeProductNew = () => {
                                         <p className="text-sm text-center md:text-left line-clamp-2">
                                             {`${item.desc}`}
                                         </p>
-                                        <Link href={'/'} className={`btn__link mt-5`}>Tìm hiểu thêm</Link>
+                                        <Link href={'/products'} className={`btn__link mt-5`}>Tìm hiểu thêm</Link>
                                     </div>
                                 </div>
                             </div>

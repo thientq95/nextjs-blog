@@ -30,22 +30,21 @@ const Menu = () => {
         {
             id: 6,
             item: "Liên hệ",
-            slug: "lien-he"
+            slug: "contact"
         }
     ];
 
     return (
-        <nav className="menubar">
-            <div className="menubar-container">
-                <div className="menu">
-                    <ul className="menu--left menu__list menu_desktop">
-                        {menuItem.map((item) => (
-                            <li className="menu__item">
-                                <Link href={`${item.slug}`} title={`${item.item}`} className="menu__link">{`${item.item}`}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+        <nav className={`relative top-0 left-0 z-50 hidden lg:block`}>
+            <div className={`flex items-center justify-between relative`}>
+                <ul className="flex-1 flex items-center justify-between relative">
+                    {menuItem.map((item) => (
+                        <li className={`flex items-center relative mr-[2.5rem] transition-all`}>
+                            <Link href={`/${item.slug}`} title={`${item.item}`}
+                                  className={`text-[16px] text-[#101010] flex items-center justify-center min-h-[22px] capitalize relative w-full border-b border-transparent`}>{`${item.item}`}</Link>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </nav>
     );

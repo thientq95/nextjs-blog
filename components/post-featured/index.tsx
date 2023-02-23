@@ -83,7 +83,7 @@ const PostFeatured = () => {
                             href={`blog`}>Xem tất cả</Link>
                         </div>
                     </div>
-                    <div className={`flex flex-col w-full min-w-0 lg:ml-8 lg:flex-1 p-7`}>
+                    <div className={`flex flex-col w-full min-w-0 lg:ml-8 lg:flex-1 p-0 md:p-7`}>
                         {posts.slice(3, 4).map((item) => (
                             <>
                                 <Link href={``} className={`block mb-8`}>
