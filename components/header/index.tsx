@@ -2,8 +2,10 @@ import Link from "next/link";
 import React from "react";
 import Menu from "./menu";
 
-const Header = () => {
-
+const Header = ({ configs }) => {
+    const logo = configs.find(item => item.key === 'C22_LOGO_SELECT').value;
+    const mainMenu = configs.find(item => item.key === 'C22_MAIN_MENU').value;
+    
     return (
         <header className="relative z-20 w-full">
             <div className="bg-[#052F1B] hidden md:block">
@@ -39,7 +41,7 @@ const Header = () => {
                 <div className="container">
                     <div className="relative flex justify-between items-center min-h-[48px] md:min-h-[85px]">
                         <Link href={'/'}>
-                            <img src="/images/header-logo.png" alt="alt" className="max-w-[130px]"/>
+                            <img src={`http://localhost:9091/${logo}`} alt="alt" className="max-w-[130px]"/>
                         </Link>
                         <div className="flex items-center justify-center flex-1 min-w-0 ">
                             <Menu />

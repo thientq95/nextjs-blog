@@ -39,7 +39,7 @@ const Menu = () => {
             <div className={`flex items-center justify-between relative`}>
                 <ul className="flex-1 flex items-center justify-between relative">
                     {menuItem.map((item) => (
-                        <li className={`flex items-center relative mr-[2.5rem] transition-all`}>
+                        <li key={item.id} className={`flex items-center relative mr-[2.5rem] transition-all`}>
                             <Link href={`/${item.slug}`} title={`${item.item}`}
                                   className={`text-[16px] text-[#101010] flex items-center justify-center min-h-[22px] capitalize relative w-full border-b border-transparent`}>{`${item.item}`}</Link>
                         </li>

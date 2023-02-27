@@ -3,13 +3,13 @@ import Link from "next/link";
 const ProductItem = ({item}) => {
     return (
         <>
-            <Link href={`/product/${item.id}`} className={`bg-[#FFF5F2] rounded-[3px] block mb-4 pb-[120%] relative`}>
+            <Link href={`/product/${item.seoAlias}`} className={`bg-[#FFF5F2] rounded-[3px] block mb-4 pb-[120%] relative`}>
                 <img src={`${item.productImage}`} alt={`${item.name}`} className={`absolute max-w-full -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2`} />
             </Link>
             <div className={`flex flex-wrap`}>
                 <div className={`flex-1 min-w-0`}>
                     <h3 className={`text-base line-clamp-2 w-full mb-[6px]`}>
-                        <Link href={`/product/${item.id}`} className={`text-black`}>{item.name}</Link>
+                        <Link href={`/product/${item.seoAlias}`} className={`text-black`}>{item.name}</Link>
                     </h3>
                     <div className={`flex justify-between w-full mt-auto flex-nowrap`}>
                         <div className={`flex-1 min-w-0`}>

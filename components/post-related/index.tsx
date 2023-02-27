@@ -77,7 +77,7 @@ const PostRelated = () => {
             <b className="uppercase">Bài viết khác:</b>
             <ul>
                 {postItem.map((item) => (
-                    <li>
+                    <li key={item.id}>
                         <Link href={`/blog/${item.id}`} className={`text-[#666]`}>{item.title}</Link>
                     </li>
                 ))}

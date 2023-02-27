@@ -7,7 +7,7 @@ import HomeAbout from "../components/home-about";
 import ProductFeatured from "../components/product-featured";
 import PostFeatured from "../components/post-featured";
 
-const IndexPage = () => {
+const IndexPage = ({data}) => {
     return (
         <Layout>
             <HomeSlider/>

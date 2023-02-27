@@ -3,11 +3,11 @@ import Link from "next/link";
 const PostItem = ({item}) => {
     return (
         <>
-            <Link href={`blog/${item.id}`} title={item.title} className={`overflow-hidden rounded`}>
-                <img src={item.image} alt={item.title} width={`100%`}/>
+            <Link href={`blog/${item.seoAlias}`} title={item.title} className={`overflow-hidden rounded`}>
+                <img src={`http://localhost:9091/${item.imageUrl}`} className="h-[160px] object-cover" alt={item.title} width={`100%`}/>
             </Link>
             <h3 className={`py-[15px]`}>
-                <Link href={``} title={item.title} className={`uppercase text-[#333] font-semibold text-[15px]`}>
+                <Link href={`blog/${item.seoAlias}`} title={item.title} className={`uppercase text-[#333] font-semibold text-[15px]`}>
                     {item.title}
                 </Link>
             </h3>

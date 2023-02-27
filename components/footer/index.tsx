@@ -111,21 +111,21 @@ const Footer = () => {
                             <p className="text-justify">Thương hiệu Dược mỹ phẩm thuần chay với&nbsp;các&nbsp;sản phẩm hỗ trợ, bổ trợ, chăm sóc sức khoẻ&nbsp;từ&nbsp;thiên nhiên, đảm bảo 100% nguồn gốc nguyên liệu thuần&nbsp;thực vật.</p>
                         </div>
                         {menuFooter.slice(0,1).map((item) => (
-                            <div className="w-full md:w-[23%]">
+                            <div key={item.id} className="w-full md:w-[23%]">
                                 <div className="flex items-center justify-between w-full ">
                                     <span className="mt-6 mb-4 text-base font-semibold uppercase md:mt-12">{item.tenMenu}</span>
                                     <div>
                                         <svg className="w-6 h-6 shrink-0 md:hidden"
                                              fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
+                                            <path fillRule="evenodd"
                                                   d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                  clip-rule="evenodd"></path>
+                                                  clipRule="evenodd"></path>
                                         </svg>
                                     </div>
                                 </div>
                                 <ul className="hidden md:block">
                                     {item.subMenu.map((item) => (
-                                        <li className="mb-2">
+                                        <li key={item.id} className="mb-2">
                                             <Link href={``} className="text-sm transition-colors hover:text-orange-600">{item.tenMenu}</Link>
                                         </li>
                                     ))}
@@ -133,21 +133,21 @@ const Footer = () => {
                             </div>
                         ))}
                         {menuFooter.slice(1,4).map((item) => (
-                            <div className="w-full md:w-[15%]">
+                            <div key={item.id} className="w-full md:w-[15%]">
                                 <div className="flex items-center justify-between w-full ">
                                     <span className="mt-6 mb-4 text-base font-semibold uppercase md:mt-12">{item.tenMenu}</span>
                                     <div>
                                         <svg className="w-6 h-6 shrink-0 md:hidden"
                                              fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
+                                            <path fillRule="evenodd"
                                                   d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                  clip-rule="evenodd"></path>
+                                                  clipRule="evenodd"></path>
                                         </svg>
                                     </div>
                                 </div>
                                 <ul className="hidden md:block">
                                     {item.subMenu.map((item) => (
-                                        <li className="mb-2">
+                                        <li key={item.id} className="mb-2">
                                             <Link href={``} className="text-sm transition-colors hover:text-orange-600">{item.tenMenu}</Link>
                                         </li>
                                     ))}
