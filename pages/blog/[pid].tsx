@@ -3,6 +3,7 @@ import Breadcumb from "../../components/breadcumb";
 import PostRelated from "../../components/post-related";
 import Layout from "../../layouts/Main";
 import { Post } from "../../types";
+import { server } from "../../utils/server";
 
 type PostType = {
   post: Post;
@@ -10,7 +11,7 @@ type PostType = {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const pid = query.pid;
-  const res = await fetch(`http://localhost:9091/api/v1/web/post/${pid}`);
+  const res = await fetch(`${server}/api/v1/web/post/${pid}`);
   const json = await res.json();
   return {
     props: {

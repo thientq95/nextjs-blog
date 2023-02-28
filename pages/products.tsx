@@ -3,17 +3,18 @@ import Layout from "../layouts/Main";
 import ProductItem from "../components/product-item";
 import { GetServerSideProps } from "next";
 import Pagination from "../components/pagination";
+import { server } from "../utils/server";
 
 export const getServerSideProps: GetServerSideProps = async ({
   query: { page = 1 },
 }) => {
   const currentPage = (page as number) - 1;
   const res = await fetch(
-    `http://localhost:9091/api/v1/web/product/all?page=${currentPage}&size=8&sort=id,desc`
+    `${server}/api/v1/web/product/all?page=${currentPage}&size=8&sort=id,desc`
   );
-  const response = await res.json();
+  const json = await res.json();
 
-  const result = response.result;
+  const result = json.result;
   return {
     props: {
       products: result.items,
