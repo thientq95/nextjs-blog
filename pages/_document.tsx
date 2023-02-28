@@ -32,8 +32,6 @@ export default class CustomDocument extends Document<DocumentProps> {
   // }
 
   render() {
-   
-  
     const { isProduction } = this.props;
     return (
       <Html lang="en">
@@ -59,6 +57,10 @@ export default class CustomDocument extends Document<DocumentProps> {
               />
             </Fragment>
           )}
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          />
         </Head>
         <body>
           <Main />

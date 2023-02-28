@@ -1,10 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setConfigs } from "../../store/reducers/config";
 import Menu from "./menu";
 
-const Header = ({ configs }) => {
+const Header = ({ configs, menu }) => {
+    const dispatch = useDispatch();
+    dispatch(setConfigs(configs))
     const logo = configs.find(item => item.key === 'C22_LOGO_SELECT').value;
-    const mainMenu = configs.find(item => item.key === 'C22_MAIN_MENU').value;
     
     return (
         <header className="relative z-20 w-full">
@@ -44,7 +47,7 @@ const Header = ({ configs }) => {
                             <img src={`http://localhost:9091/${logo}`} alt="alt" className="max-w-[130px]"/>
                         </Link>
                         <div className="flex items-center justify-center flex-1 min-w-0 ">
-                            <Menu />
+                            <Menu menuItem={menu}/>
                         </div>
                         <div className="inline-flex items-center flex-nowrap">
                             <Link href={'/'}>

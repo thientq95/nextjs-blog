@@ -17,6 +17,7 @@ import {
 import { ThemeProvider } from "next-themes";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { setConfigs } from "../store/reducers/config";
 
 const v: Variants = {
   hidden: {
@@ -87,16 +88,29 @@ class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { data: data.result, pageProps };
+    const configs = data.result;
+    const mainMenu = JSON.parse(
+      configs.find((item) => item.key === "C22_MAIN_MENU").value
+    );
+    const mainMenuRes = await fetch(`http://localhost:9091/api/v1/web/menu/${mainMenu[0].id}`);
+    const mainMenuResponse = await mainMenuRes.json();
+    // const dispatch = useDispatch();
+    // dispatch(setConfigs(configs))
+    return {
+      data: {
+        configs: configs,
+        menu: mainMenuResponse.result,
+      },
+      pageProps,
+    };
   }
 
   render() {
     const { Component, pageProps, router, data } = this.props;
-    console.warn(data);
     return (
       <ThemeProvider attribute="class" storageKey="theme" enableSystem>
         <LazyMotion features={domAnimation}>
-          <Header configs={data}/>
+          <Header configs={data.configs} menu={data.menu} />
           <AnimatePresence
             initial={false}
             onExitComplete={() => window.scrollTo(0, 0)}
@@ -113,7 +127,7 @@ class MyApp extends App {
                 type: "tween",
               }}
             >
-              <Component {...pageProps} />
+              <Component {...pageProps}  />
             </m.div>
           </AnimatePresence>
           <Footer />
@@ -121,22 +135,6 @@ class MyApp extends App {
       </ThemeProvider>
     );
   }
-}
-// MyApp.getInitialProps = async (context) => {
-//   // const dispatch = useDispatch();
-//   const res = await fetch("http://localhost:9091/api/v1/web/config-theme");
-//   const data = await res.json();
-
-//   console.warn(data.result);
-//   return { data: data.result }; // this will be passed to the page component as props
-// };
-
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`http://localhost:9091/api/v1/web/config-theme`);
-  const data = await res.json();
-  // Pass data to the page via props
-  return { props: { data: data.result } };
 }
 
 export default wrapper.withRedux(MyApp);

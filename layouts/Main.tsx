@@ -14,10 +14,7 @@ export default ({ children, title = "Website" }: LayoutType) => {
     <div className="app-main">
       <Head>
         <title>{title}</title>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-        />
+        
       </Head>
 
       <main className={pathname !== "/" ? "main-page" : ""}>{children}</main>

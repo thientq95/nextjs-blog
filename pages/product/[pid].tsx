@@ -4,20 +4,25 @@ import Layout from "../../layouts/Main";
 import Breadcumb from "../../components/breadcumb";
 import Link from "next/link";
 import ProductRelated from "../../components/product-related";
+import { Product } from "../../types";
 
-// export const getServerSideProps: GetServerSideProps = async ({query}) => {
-//     const pid = query.pid;
-//     const res = await fetch(`${server}/api/product/${pid}`);
-//     const product = await res.json();
-//
-//     return {
-//         props: {
-//             product,
-//         },
-//     };
-// };
+type ProductType = {
+    product: Product;
+};
 
-const Product = () => {
+export const getServerSideProps: GetServerSideProps = async ({query}) => {
+    const pid = query.pid;
+    const res = await fetch(`http://localhost:9091/api/v1/web/product/detail/${pid}`);
+    const product = await res.json();
+
+    return {
+        props: {
+            product: product.result,
+        },
+    };
+};
+
+const Product = ({ product }) => {
     const breadcrumbs = [
         {
             id: 1,
@@ -26,26 +31,30 @@ const Product = () => {
         },
         {
             id: 2,
-            title: "Tinh dầu thiên nhiên Bách Xanh chính hãng nguyên chất 100%",
+            title: product.name,
             href: "",
         },
     ];
+    if (!product) return (
+        <h1>Lỗi</h1>
+    )
     return (
         <Layout>
             <Breadcumb breadcrumbs={breadcrumbs}/>
             <section className={`container`}>
                 <div className={`flex flex-wrap justify-between mt-8`}>
-                    <div className={`w-full lg:w-1/2`}></div>
+                    <div className={`w-full lg:w-1/2`}>
+                    </div>
                     <div className={`min-w-0 lg:flex-1 lg:ml-5`}>
-                        <div className="text-2xl font-bold text-black">Dầu Massage Sunflower Morning</div>
+                        <div className="text-2xl font-bold text-black">{ product.name }</div>
                         <div className="my-2 text-base text-[#845536]">Mã sản phẩm: <span>204900006</span></div>
                         <div className="h-[1px] bg-[#845536] bg-opacity-20 my-4"></div>
                         <div className="flex justify-between">
                             <div className="flex flex-col">
                                 <div className="inline-flex">
-                                    <p className="text-lg font-bold text-[rgb(38,79,49)]"> 1.198.000đ</p>
-                                    <span className="px-1 text-lg">-</span> <p
-                                    className="text-lg font-bold text-[rgb(38,79,49)]"> 1.658.000đ</p>
+                                    <p className="text-lg font-bold text-[rgb(38,79,49)]"> {product.price && product.price.toLocaleString()}đ</p>
+                                    {/* <span className="px-1 text-lg">-</span> <p
+                                    className="text-lg font-bold text-[rgb(38,79,49)]"> 1.658.000đ</p> */}
                                 </div>
                             </div>
                             <div className="flex flex-col items-end flex-1 min-w-0">
@@ -128,10 +137,10 @@ const Product = () => {
                     <div className="block text-base border-transparent cursor-pointer ml-7 border-y current-active:border-b-black">Đánh giá</div>
                 </ul>
                 <div className="py-16">
-                    Nội dung cập nhật
+                <div dangerouslySetInnerHTML={{ __html: product.bodyHtml }}></div>
                 </div>
                 <div className="mb-10 text-4xl font-bold text-center text-[rgb(38,79,49)]">Chúng tôi tìm thấy các sản phẩm khác, bạn có thể thích!</div>
-                <ProductRelated/>
+                {/* <ProductRelated/> */}
             </section>
         </Layout>
     );

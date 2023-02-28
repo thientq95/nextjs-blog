@@ -18,8 +18,26 @@ export type ProductStoreType = {
 export type Product = {
   id: string;
   name: string;
-  images: string;
+  imageUrl: string;
+  bodyHtml: string;
+  bodyPlain: string;
+  seoAlias: string;
+  seoTitle: string;
+  seoDescription: string;
+  seoMeta: string;
+  publishedAt: number;
+  publishedScope: string;
+  productCategory: ProductCategory;
 };
+
+export type ProductCategory = {
+  id: number;
+  name: string;
+  description: string;
+  seoAlias: string;
+  seoTitle: string;
+  imageUrl: string;
+}
 
 export type Post = {
   id: number;

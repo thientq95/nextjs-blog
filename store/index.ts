@@ -55,6 +55,7 @@ const makeStore = ({ isServer }: {isServer: Boolean}) => {
 // @ts-ignore:next-line
 export const wrapper = createWrapper(makeStore, {debug: true});
 
+
 export type RootState = ReturnType<typeof store.getState>
 
 export type AppDispatch = typeof store.dispatch

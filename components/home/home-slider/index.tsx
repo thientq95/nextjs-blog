@@ -2,6 +2,8 @@ import "swiper/css";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import React from "react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 let slidesPerView = 1;
 let centeredSlides = true;
@@ -20,6 +22,9 @@ let spaceBetween = 0;
 // }
 
 const HomeSlider = () => {
+    const { configs } = useSelector((state: RootState)  => state.config);
+
+    const bannerTops = JSON.parse(configs.find(m => m.key === 'C22_BANNER_TOP').value);
     const sliders = [
         {
             id: 1,
@@ -49,29 +54,29 @@ const HomeSlider = () => {
                     autoplay={true}
                     className="slider-content-swiper"
                 >
-                    {sliders.map((item) => (
-                        <SwiperSlide key={`${item.id}`}>
+                    {bannerTops.map((item, idx) => (
+                        <SwiperSlide key={`${idx}`}>
                             <div
                                 className="flex flex-wrap md:flex-nowrap justify-between items-center pb-[30px] md:pb-0 pt-10 md:pt-0">
                                 <div className="slider-image mb-8 md:mb-0 w-full flex-shrink-0 md:w-[52%]">
-                                    <Link href={''}>
+                                    <Link href={`/${item.link}`}>
                                         <figure className="mb-0">
-                                            <img src={`${item.image}`}
+                                            <img src={`http://localhost:9091/${item.image}`}
                                                  alt={`${item.title}`} width="660" height="485"/></figure>
                                     </Link>
                                 </div>
                                 <div className="min-w-0 md:flex-1 slider-content md:ml-10">
                                     <div className="pb-[2px] slider-content-item">
-                                        <p className="text-3xl leading-snug xl:text-2xl mb-3 text-[#845536] ">
-                                            {`${item.subTitle}`}
-                                        </p>
+                                        {/* <p className="text-3xl leading-snug xl:text-2xl mb-3 text-[#845536] ">
+                                            {`${item.title}`}
+                                        </p> */}
                                         <h5 className="font-bold text-3xl xl:text-[40px] text-primary leading-tight">
                                             {`${item.title}`}
                                         </h5>
                                         <p className="text-[16px] mb-5 text-[#052F1B] line-clamp-6 md:line-clamp-2">
-                                            {`${item.desc}`}
+                                            {`${item.description}`}
                                         </p>
-                                        <Link href={'/'} className={`btn__link`}>Tìm hiểu thêm</Link>
+                                        <Link href={`/${item.link}`} target="_blank" className={`btn__link`}>Tìm hiểu thêm</Link>
                                     </div>
                                 </div>
                             </div>

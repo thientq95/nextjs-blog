@@ -3,19 +3,18 @@ import Breadcumb from "../components/breadcumb";
 import Pagination from "../components/pagination";
 import PostItem from "../components/post-item";
 import Layout from "../layouts/Main";
+import { server } from "../utils/server";
 
 export const getServerSideProps: GetServerSideProps = async ({
   query: { page = 1 },
 }) => {
   const currentPage = (page as number) - 1;
   const res = await fetch(
-    `http://localhost:9091/api/v1/web/post?page=${
-      currentPage
-    }&size=8&sort=id,desc`
+    `${server}/api/v1/web/post?page=${currentPage}&size=8&sort=id,desc`
   );
-  const response = await res.json();
+  const json = await res.json();
 
-  const result = response.result;
+  const result = json.result;
   return {
     props: {
       posts: result.items,

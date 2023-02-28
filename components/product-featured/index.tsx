@@ -153,7 +153,7 @@ const ProductFeatured = () => {
 
         <section className={`overflow-x-hidden py-7`}>
             {groupProduct.map((item) => (
-                <div
+                <div key={item.id}
                     className="pb-7 max-w-[1366px] container m-auto flex flex-wrap md:flex-nowrap even:flex-row-reverse">
                     <div className={`mb-[25px] md:mb-0 w-full md:w-[43%] flex flex-col`}>
                         <div className={`w-full lg:ml-[15%] lg:max-w-[345px] mt-4 w-[calc(100%-2em)]`}>
@@ -195,9 +195,9 @@ const ProductFeatured = () => {
                                 swiperRef.current = swiper;
                             }}
                         >
-                            {item.productItem.map((item) => (
-                                <SwiperSlide key={`${item.id}`}>
-                                    <ProductItem key={item.id} item={item}/>
+                            {item.productItem.map((productItem) => (
+                                <SwiperSlide key={`${productItem.id}`}>
+                                    <ProductItem item={productItem}/>
                                 </SwiperSlide>
                             ))}
                         </Swiper>

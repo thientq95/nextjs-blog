@@ -64,7 +64,7 @@ const PostFeatured = () => {
                 <div className={`flex flex-wrap justify-between`}>
                     <div className={`w-full rounded-lg lg:p-7 lg:shadow-xl lg:w-1/2`}>
                         {posts.slice(0, 3).map((item) => (
-                            <div className={`flex justify-between py-5`}>
+                            <div key={item.id} className={`flex justify-between py-5`}>
                                 <Link href={``} className={`w-[40%]`}>
                                     <img src={item.image} alt={item.title} className={`w-full h-full`}/>
                                 </Link>
@@ -85,7 +85,7 @@ const PostFeatured = () => {
                     </div>
                     <div className={`flex flex-col w-full min-w-0 lg:ml-8 lg:flex-1 p-0 md:p-7`}>
                         {posts.slice(3, 4).map((item) => (
-                            <>
+                            <div key={item.id}>
                                 <Link href={``} className={`block mb-8`}>
                                     <img src={item.image} alt={item.title} className={`w-full`}/>
                                 </Link>
@@ -97,7 +97,7 @@ const PostFeatured = () => {
                                     className="border-0 md:border p-0 md:px-[10px] md:py-[6px] border-[#815030] text-[#815030] text-lg transition hover:bg-[#815030] hover:text-white block mx-auto w-fit"
                                     href={``}>Đọc bài viết</Link>
                                 </div>
-                            </>
+                            </div>
                         ))}
                     </div>
                 </div>

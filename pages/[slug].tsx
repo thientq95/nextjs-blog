@@ -1,60 +1,65 @@
-import {GetServerSideProps} from "next";
+import { GetServerSideProps } from "next";
 import Layout from "../layouts/Main";
 import dynamic from "next/dynamic";
+import Breadcumb from "../components/breadcumb";
 
-// export const getServerSideProps: GetServerSideProps = async ({query}) => {
-//     const slug = query.slug;
-//     console.warn(slug)
-//     return {
-//         props: {
-//             slug,
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const slug = query.slug;
+  const fetchData = await fetch(
+    `http://localhost:9091/api/v1/web/page-content/${slug}`
+  );
+  const response = await fetchData.json();
+
+  return {
+    props: {
+      page: response.result,
+    },
+  };
+};
+
+const DynamicPage = ({ page }) => {
+  const breadcrumbs = [
+    {
+      id: 1,
+      title: page.title,
+      href: "",
+    },
+  ];
+  return (
+    <Layout>
+      <Breadcumb breadcrumbs={breadcrumbs} />
+      <div className="max-w-[776px] mx-auto pt-[40px] pb-[20px]">
+        <h1 className="text-center text-[32px] font-bold leading-[40px] mb-[16px]">{page.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: page.content }}></div>
+      </div>
+    </Layout>
+  );
+};
+
+// export const getStaticPaths = () => {
+//     const fetchedData = [
+//         {
+//             template: "aboutPage",
+//             slug: "about",
 //         },
+//         {
+//             template: "contactPage",
+//             slug: "lien-he",
+//         },
+//         {
+//             template: "blogPage",
+//             slug: "tin-tuc",
+//         },
+//         {
+//             template: "productPage",
+//             slug: "san-pham",
+//         }
+//     ];
+
+//     return {
+//         paths: fetchedData.map(({slug}) => ({params: {slug}})),
+//         fallback: "blocking",
 //     };
 // };
-
-const DynamicPage = ({page}) => {
-    switch (page?.template) {
-        case "about":
-            const AboutPage = dynamic(() => import("../components/about"));
-            return <AboutPage {...page} />;
-        case "introduce":
-            const IntroducePage = dynamic(() => import("../components/introduce"));
-            return <IntroducePage {...page} />;
-        default:
-            return null;
-    }
-    // return (
-    //     <Layout>
-    //         { slug }
-    //     </Layout>
-    // )
-};
-
-
-export const getStaticPaths = () => {
-    const fetchedData = [
-        {
-            template: "aboutPage",
-            slug: "about",
-        },
-        {
-            template: "contactPage",
-            slug: "lien-he",
-        },
-        {
-            template: "blogPage",
-            slug: "tin-tuc",
-        },
-        {
-            template: "productPage",
-            slug: "san-pham",
-        }
-    ];
-
-    return {
-        paths: fetchedData.map(({slug}) => ({params: {slug}})),
-        fallback: "blocking",
-    };
-};
 
 export default DynamicPage;

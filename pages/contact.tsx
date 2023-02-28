@@ -30,8 +30,6 @@ const ContactPage = () => {
 
     const onSubmit = async (data) => {
         const res = await postData(`${server}/api/contact`, data);
-
-        // console.log(res);
     };
 
     return (

@@ -42,7 +42,7 @@ const HomeProductNew = () => {
                 </div>
                 <div className="flex flex-wrap md:block">
                     {productItem.map((item) => (
-                        <div className="flex w-full mb-[30px] md:mb-0 md:basis-1/2 odd:justify-start even:justify-end">
+                        <div key={item.id} className="flex w-full mb-[30px] md:mb-0 md:basis-1/2 odd:justify-start even:justify-end">
                             <div className="w-full max-w-[800px] flex flex-col md:flex-row items-center justify-between">
                                 <div className="relative md:p-[10px] flex flex-col items-center">
                                     <img src={`./images/circle_bg.png`} alt="bg" className="relative z-20 block"/>
