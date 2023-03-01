@@ -4,9 +4,9 @@ import { RootState } from "../../../store";
 
 const HomeCategory = () => {
   const { configs } = useSelector((state: RootState) => state.config);
-  const mainBanners = JSON.parse(
-    configs.find((m) => m.key === "C22_MAIN_BANNER_LIST").value
-  );
+
+  const mainBannerObj = configs.find((m) => m.key === "C22_MAIN_BANNER_LIST")?.value;
+  const mainBanners = mainBannerObj ? JSON.parse(mainBannerObj): [];
 
 
   return (

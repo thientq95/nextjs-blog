@@ -7,20 +7,26 @@ import { server } from "../../utils/server";
 
 type PostType = {
   post: Post;
+  postRelateds: Post[];
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const pid = query.pid;
   const res = await fetch(`${server}/api/v1/web/post/${pid}`);
   const json = await res.json();
+
+  const postRelatedResponse = await fetch(`${server}/api/v1/web/post?page=0&size=10&categoryIds=${json.result.postCategory.id}&excludeIds=${json.result.id}`);
+  const postRelatedJson = await postRelatedResponse.json();
+  // console.warn(postRelatedJson)
   return {
     props: {
       post: json.result,
+      postRelateds:  postRelatedJson.result.items ?? []
     },
   };
 };
 
-const BlogDetailPage = ({ post }: PostType) => {
+const BlogDetailPage = ({ post, postRelateds }: PostType) => {
   const breadcrumbs = [
     {
       id: 1,
@@ -42,9 +48,10 @@ const BlogDetailPage = ({ post }: PostType) => {
         margin: auto
        }
        .content-main p {
-        line-height: 32px;
+        line-height: 25px;
+        margin-bottom: 1em;
        }
-       .content-main .text-big {
+       .content-main .text-big, .content-main p {
         font: 400 18px arial;
        }
       `}</style>
@@ -59,7 +66,7 @@ const BlogDetailPage = ({ post }: PostType) => {
             ></div>
           </div>
           <div className={`p-3 my-3 rounded bg-[#fafafa]`}>
-            <PostRelated />
+            <PostRelated postRelateds={postRelateds}/>
           </div>
         </div>
       </section>

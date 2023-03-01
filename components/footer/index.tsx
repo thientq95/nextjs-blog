@@ -1,6 +1,13 @@
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const Footer = () => {
+    const { configs } = useSelector((state: RootState)  => state.config);
+
+    const logo = configs.find(item => item.key === 'C22_LOGO_SELECT')?.value ?? '';
+    const introText = configs.find(item => item.key === 'C22_FOOTER_INTRO')?.value ?? '';
+    const introCompanyText = configs.find(item => item.key === 'C22_FOOTER_COMPANY_INFO')?.value ?? '';
     const menuFooter = [
         {
             id: 1,
@@ -106,9 +113,9 @@ const Footer = () => {
                     <div className="flex flex-wrap justify-between md:flex-nowrap">
                         <div className="w-full md:w-[23%]">
                             <Link href={``} className="inline-block mb-[17px] mt-[20px]">
-                                <img src={`/images/header-logo.png`} alt="Logo"/>
+                                <img src={`http://localhost:9091/${logo}`} alt="Logo"/>
                             </Link>
-                            <p className="text-justify">Thương hiệu Dược mỹ phẩm thuần chay với&nbsp;các&nbsp;sản phẩm hỗ trợ, bổ trợ, chăm sóc sức khoẻ&nbsp;từ&nbsp;thiên nhiên, đảm bảo 100% nguồn gốc nguyên liệu thuần&nbsp;thực vật.</p>
+                            <p className="text-justify">{introText}</p>
                         </div>
                         {menuFooter.slice(0,1).map((item) => (
                             <div key={item.id} className="w-full md:w-[23%]">
@@ -162,10 +169,7 @@ const Footer = () => {
                 <div className="container">
                     <div className="justify-between md:flex">
                         <div className="flex-1 min-w-0 pr-5">
-                            CÔNG TY CỔ PHẦN ĐẦU TƯ THƯƠNG MẠI<br/>
-                            Giấy CNĐKDN: 0109150000 – Ngày cấp: 20/01/2023 <br/>
-                            Cơ quan cấp: Phòng Đăng ký kinh doanh – Chi cục Thuế Quận Cầu Giấy <br/>
-                            Địa chỉ đăng ký kinh doanh: 77 Lê Trung Nghĩa
+                            <div dangerouslySetInnerHTML={{ __html: introCompanyText}}></div>
                         </div>
                         <div className="flex items-baseline justify-between md:flex-col md:items-end">
                             <div className="mt-auto text-[10px] md:text-xs text-[#101010]">© 2023.</div>

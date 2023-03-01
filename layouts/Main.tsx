@@ -14,9 +14,7 @@ export default ({ children, title = "Website" }: LayoutType) => {
     <div className="app-main">
       <Head>
         <title>{title}</title>
-        
       </Head>
-
       <main className={pathname !== "/" ? "main-page" : ""}>{children}</main>
     </div>
   );

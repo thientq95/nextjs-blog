@@ -13,7 +13,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const pid = query.pid;
   const res = await fetch(`${server}/api/v1/web/product/detail/${pid}`);
   const json = await res.json();
-
   return {
     props: {
       product: json.result,
@@ -21,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   };
 };
 
-const Product = ({ product }) => {
+const Product = ({ product }: ProductType) => {
   const breadcrumbs = [
     {
       id: 1,
@@ -34,7 +33,7 @@ const Product = ({ product }) => {
       href: "",
     },
   ];
-  if (!product) return <h1>Lỗi</h1>;
+  // if (!product) return <h1>Lỗi</h1>;
   return (
     <Layout>
       <Breadcumb breadcrumbs={breadcrumbs} />
@@ -51,8 +50,7 @@ const Product = ({ product }) => {
               <div className="flex flex-col">
                 <div className="inline-flex">
                   <p className="text-lg font-bold text-[rgb(38,79,49)]">
-                    {" "}
-                    {product.price && product.price.toLocaleString()}đ
+                    {product && product.price && product.price.toLocaleString()}đ
                   </p>
                   {/* <span className="px-1 text-lg">-</span> <p
                                     className="text-lg font-bold text-[rgb(38,79,49)]"> 1.658.000đ</p> */}
@@ -66,7 +64,6 @@ const Product = ({ product }) => {
                   <i className="far fa-star"></i>
                   <i className="far fa-star"></i>
                   <span className="ml-5 text-sm text-black text-opacity-50">
-                    {" "}
                     0.0 (0 đánh giá){" "}
                   </span>
                 </div>
@@ -127,7 +124,6 @@ const Product = ({ product }) => {
                     <input
                       type="text"
                       className="flex-1 border-y-0 text-center border-[#BABABA] min-w-0 h-8"
-                      value="1"
                     />
                     <button
                       type="button"

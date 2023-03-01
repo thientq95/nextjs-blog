@@ -24,7 +24,8 @@ let spaceBetween = 0;
 const HomeSlider = () => {
     const { configs } = useSelector((state: RootState)  => state.config);
 
-    const bannerTops = JSON.parse(configs.find(m => m.key === 'C22_BANNER_TOP').value);
+    const bannerTopObj = configs.find(m => m.key === 'C22_BANNER_TOP')?.value;
+    const bannerTops =  bannerTopObj ?  JSON.parse(bannerTopObj) : [];
     const sliders = [
         {
             id: 1,

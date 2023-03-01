@@ -2,14 +2,25 @@ import { GetServerSideProps } from "next";
 import Layout from "../layouts/Main";
 import dynamic from "next/dynamic";
 import Breadcumb from "../components/breadcumb";
+import { server } from "../utils/server";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const slug = query.slug;
+  if (!slug) {
+    return {
+      notFound: true
+    }
+  }
+
   const fetchData = await fetch(
-    `http://localhost:9091/api/v1/web/page-content/${slug}`
+    `${server}/api/v1/web/page-content/${slug}`
   );
   const response = await fetchData.json();
-
+  if (!response || !response.success) {
+    return {
+      notFound: true
+    }
+  }
   return {
     props: {
       page: response.result,
@@ -25,6 +36,7 @@ const DynamicPage = ({ page }) => {
       href: "",
     },
   ];
+
   return (
     <Layout>
       <Breadcumb breadcrumbs={breadcrumbs} />

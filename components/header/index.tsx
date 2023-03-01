@@ -1,12 +1,14 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setConfigs } from "../../store/reducers/config";
 import Menu from "./menu";
 
 const Header = ({ configs, menu }) => {
     const dispatch = useDispatch();
-    dispatch(setConfigs(configs))
+    useEffect(() => {
+        dispatch(setConfigs(configs))
+    }, [])
     const logo = configs.find(item => item.key === 'C22_LOGO_SELECT').value;
     
     return (
