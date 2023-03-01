@@ -1,6 +1,14 @@
 const path = require('path')
 
 module.exports = {
+    async rewrites() {
+        return [
+          {
+            source: '/contact',
+            destination: '/lien-he',
+          },
+        ]
+      },
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')]
     },

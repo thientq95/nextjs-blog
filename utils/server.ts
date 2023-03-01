@@ -1,3 +1,4 @@
 const dev = process.env.NODE_ENV !== 'production';
+// const apiUrl = process.env.SERVER_ENDPOINT;
 
-export const server = dev ? 'http://localhost:9091' : 'https://next-ecommerce-front.vercel.app';
+export const server = process.env.SERVER_ENDPOINT;
