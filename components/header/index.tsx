@@ -1,22 +1,20 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setConfigs } from "../../store/reducers/config";
+import React, {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {setConfigs} from "../../store/reducers/config";
 import Menu from "./menu";
 import {server} from "../../utils/server";
 
-const Header = ({ configs, menu }) => {
+const Header = ({configs, menu}) => {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setConfigs(configs));
+        dispatch(setConfigs(configs))
     }, [])
+    const logo = configs.find(item => item.key === 'C22_LOGO_SELECT').value;
 
-    let logo = configs.find(item => item.key === 'C22_LOGO_SELECT')?.value ?? '';
-    logo = `${server}/${logo}`;
-    
     return (
-        <header className="relative z-20 w-full">
-            <div className="bg-[#052F1B] hidden md:block">
+        <header className={`relative z-20 w-full transition-all z-[999]`}>
+            <div className={`bg-[#052F1B] hidden md:block transition-all`}>
                 <div className="container">
                     <div className="relative flex justify-between items-center min-h-[45px]">
                         <Link href={`/`} className="flex-shrink-0 text-white">
@@ -45,11 +43,11 @@ const Header = ({ configs, menu }) => {
                     </div>
                 </div>
             </div>
-            <div className="bg-[#F7FCF0] w-full">
+            <div className={`bg-[#F7FCF0] w-full`}>
                 <div className="container">
                     <div className="relative flex justify-between items-center min-h-[48px] md:min-h-[85px]">
                         <Link href={'/'}>
-                            <img src={`${logo}`} alt="alt" className="max-w-[130px]"/>
+                            <img src={`${server}/${logo}`} alt="alt" className="max-w-[130px]"/>
                         </Link>
                         <div className="flex items-center justify-center flex-1 min-w-0 ">
                             <Menu menuItem={menu}/>
@@ -61,12 +59,16 @@ const Header = ({ configs, menu }) => {
                             <Link href={`shopping-cart`} className="relative ml-5">
                                 <img src="/images/icons/shopping.png"
                                      alt="alt"/>
-                                <span className="w-4 h-4 rounded-full text-center text-[7px] font-semibold leading-4 text-white bg-[#052F1B] block absolute -right-[5px] -top-[5px]">0</span>
+                                <span
+                                    className="w-4 h-4 rounded-full text-center text-[7px] font-semibold leading-4 text-white bg-[#052F1B] block absolute -right-[5px] -top-[5px]">0</span>
                             </Link>
-                            <div className={`flex lg:hidden ml-[20px] relative w-[24px] h-[24px] cursor-pointer items-center text-center`}>
-                                <div className={`absolute w-[98%] h-[2px] bg-[#000] rounded-[15px] top-[6px] left-0`}></div>
+                            <div
+                                className={`flex lg:hidden ml-[20px] relative w-[24px] h-[24px] cursor-pointer items-center text-center`}>
+                                <div
+                                    className={`absolute w-[98%] h-[2px] bg-[#000] rounded-[15px] top-[6px] left-0`}></div>
                                 <div className={`w-[80%] h-[2px] bg-[#000] rounded-[15px] mt-[5px]`}></div>
-                                <div className={`absolute w-[98%] h-[2px] bg-[#000] rounded-[15px] bottom-[2px] left-0`}></div>
+                                <div
+                                    className={`absolute w-[98%] h-[2px] bg-[#000] rounded-[15px] bottom-[2px] left-0`}></div>
                             </div>
                         </div>
                     </div>
