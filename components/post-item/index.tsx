@@ -3,7 +3,7 @@ import Image from "next/image";
 import {server} from "../../utils/server";
 
 const PostItem = ({ item }) => {
-
+  const src = `${server}/${item.imageUrl}`;
   return (
     <>
       <Link
@@ -13,12 +13,14 @@ const PostItem = ({ item }) => {
       >
         {/* <Image
           className="h-[160px] object-cover"
-          src={`http://localhost:9091/api/v1/resource/sys-file/view/56`}
+          loader={() => src} src={src}
+          priority
+          unoptimized
           alt={item.title}
           width={500}
           height={300}
         /> */}
-        <img className="h-[160px] object-cover w-full"  src={`${server}/${item.imageUrl}`}
+        <img className="h-[160px] object-cover w-full"  src={src}
           alt={item.title}/>
       </Link>
       <h3 className={`py-[15px]`}>

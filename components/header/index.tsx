@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setConfigs } from "../../store/reducers/config";
 import Menu from "./menu";
@@ -8,9 +8,11 @@ import {server} from "../../utils/server";
 const Header = ({ configs, menu }) => {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setConfigs(configs))
+        dispatch(setConfigs(configs));
     }, [])
-    const logo = configs.find(item => item.key === 'C22_LOGO_SELECT').value;
+
+    let logo = configs.find(item => item.key === 'C22_LOGO_SELECT')?.value ?? '';
+    logo = `${server}/${logo}`;
     
     return (
         <header className="relative z-20 w-full">
@@ -47,7 +49,7 @@ const Header = ({ configs, menu }) => {
                 <div className="container">
                     <div className="relative flex justify-between items-center min-h-[48px] md:min-h-[85px]">
                         <Link href={'/'}>
-                            <img src={`${server}/${logo}`} alt="alt" className="max-w-[130px]"/>
+                            <img src={`${logo}`} alt="alt" className="max-w-[130px]"/>
                         </Link>
                         <div className="flex items-center justify-center flex-1 min-w-0 ">
                             <Menu menuItem={menu}/>
