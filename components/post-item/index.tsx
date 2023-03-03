@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
+import {server} from "../../utils/server";
 
 const PostItem = ({ item }) => {
+
   return (
     <>
       <Link
@@ -16,7 +18,7 @@ const PostItem = ({ item }) => {
           width={500}
           height={300}
         /> */}
-        <img className="h-[160px] object-cover w-full"  src={`http://localhost:9091/${item.imageUrl}`}
+        <img className="h-[160px] object-cover w-full"  src={`${server}/${item.imageUrl}`}
           alt={item.title}/>
       </Link>
       <h3 className={`py-[15px]`}>

@@ -1,6 +1,7 @@
 import PostItem from "../post-item";
 import Link from "next/link";
 import { format } from "date-fns";
+import {server} from "../../utils/server";
 
 const PostFeatured = ({ posts }) => {
     return (
@@ -16,7 +17,7 @@ const PostFeatured = ({ posts }) => {
                         {posts && posts.slice(0, 3).map((item) => (
                             <div key={item.id} className={`flex justify-between py-5`}>
                                 <Link href={`/blog/${item.seoAlias}`} className={`w-[40%]`}>
-                                    <img src={`http://localhost:9091/${item.imageUrl}`} alt={item.title} className={`w-full h-[200px] object-cover`}/>
+                                    <img src={`${server}/${item.imageUrl}`} alt={item.title} className={`w-full h-[200px] object-cover`}/>
                                 </Link>
                                 <div className={`flex-1 min-w-0 ml-6`}>
                                     <div className={`mt-4 mb-2 text-base text-gray-700`}>
@@ -38,7 +39,7 @@ const PostFeatured = ({ posts }) => {
                         {posts && posts.slice(3, 4).map((item) => (
                             <div key={item.id}>
                                 <Link href={`/blog/${item.seoAlias}`} className={`block mb-8`}>
-                                    <img src={`http://localhost:9091/${item.imageUrl}`} alt={item.title} className={`w-full max-h-[415px] object-cover`}/>
+                                    <img src={`${server}/${item.imageUrl}`} alt={item.title} className={`w-full max-h-[415px] object-cover`}/>
                                 </Link>
                                 <div className={`mt-4 mb-2 text-base text-gray-700`}>{format(item.createdDate, "dd/mm/yyyy")}</div>
                                 <div

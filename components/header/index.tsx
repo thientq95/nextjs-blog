@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setConfigs } from "../../store/reducers/config";
 import Menu from "./menu";
+import {server} from "../../utils/server";
 
 const Header = ({ configs, menu }) => {
     const dispatch = useDispatch();
@@ -46,14 +47,19 @@ const Header = ({ configs, menu }) => {
                 <div className="container">
                     <div className="relative flex justify-between items-center min-h-[48px] md:min-h-[85px]">
                         <Link href={'/'}>
-                            <img src={`http://localhost:9091/${logo}`} alt="alt" className="max-w-[130px]"/>
+                            <img src={`${server}/${logo}`} alt="alt" className="max-w-[130px]"/>
                         </Link>
                         <div className="flex items-center justify-center flex-1 min-w-0 ">
                             <Menu menuItem={menu}/>
                         </div>
                         <div className="inline-flex items-center flex-nowrap">
-                            <Link href={'/'}>
+                            <Link href={'/account/login'}>
                                 <img src="/images/icons/user.png" alt="alt"/>
+                            </Link>
+                            <Link href={`shopping-cart`} className="relative ml-5">
+                                <img src="/images/icons/shopping.png"
+                                     alt="alt"/>
+                                <span className="w-4 h-4 rounded-full text-center text-[7px] font-semibold leading-4 text-white bg-[#052F1B] block absolute -right-[5px] -top-[5px]">0</span>
                             </Link>
                             <div className={`flex lg:hidden ml-[20px] relative w-[24px] h-[24px] cursor-pointer items-center text-center`}>
                                 <div className={`absolute w-[98%] h-[2px] bg-[#000] rounded-[15px] top-[6px] left-0`}></div>

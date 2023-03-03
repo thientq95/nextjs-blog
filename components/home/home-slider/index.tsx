@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import {server} from "../../../utils/server";
 
 let slidesPerView = 1;
 let centeredSlides = true;
@@ -62,7 +63,7 @@ const HomeSlider = () => {
                                 <div className="slider-image mb-8 md:mb-0 w-full flex-shrink-0 md:w-[52%]">
                                     <Link href={`/${item.link}`}>
                                         <figure className="mb-0">
-                                            <img src={`http://localhost:9091/${item.image}`}
+                                            <img src={`${server}/${item.image}`}
                                                  alt={`${item.title}`} width="660" height="485"/></figure>
                                     </Link>
                                 </div>

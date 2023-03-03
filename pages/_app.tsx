@@ -18,6 +18,7 @@ import { ThemeProvider } from "next-themes";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { setConfigs } from "../store/reducers/config";
+import {server} from "../utils/server";
 
 const v: Variants = {
   hidden: {
@@ -82,7 +83,7 @@ if (isProduction) {
 class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
-    const res = await fetch(`http://localhost:9091/api/v1/web/config-theme`);
+    const res = await fetch(`${server}/api/v1/web/config-theme`);
     const data = await res.json();
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
@@ -92,7 +93,7 @@ class MyApp extends App {
     const mainMenu = JSON.parse(
       configs.find((item) => item.key === "C22_MAIN_MENU").value
     );
-    const mainMenuRes = await fetch(`http://localhost:9091/api/v1/web/menu/${mainMenu[0].id}`);
+    const mainMenuRes = await fetch(`${server}/api/v1/web/menu/${mainMenu[0].id}`);
     const mainMenuResponse = await mainMenuRes.json();
     // const dispatch = useDispatch();
     // dispatch(setConfigs(configs))
@@ -108,7 +109,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, router, data } = this.props;
     return (
-      <ThemeProvider attribute="class" storageKey="theme" enableSystem>
+      // <ThemeProvider attribute="class" theme={`light`} storageKey="theme" enableSystem>
         <LazyMotion features={domAnimation}>
           <Header configs={data.configs} menu={data.menu} />
           <AnimatePresence
@@ -132,7 +133,7 @@ class MyApp extends App {
           </AnimatePresence>
           <Footer />
         </LazyMotion>
-      </ThemeProvider>
+      // </ThemeProvider>
     );
   }
 }

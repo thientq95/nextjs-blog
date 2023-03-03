@@ -17,7 +17,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const postRelatedResponse = await fetch(`${server}/api/v1/web/post?page=0&size=10&categoryIds=${json.result.postCategory.id}&excludeIds=${json.result.id}`);
   const postRelatedJson = await postRelatedResponse.json();
-  // console.warn(postRelatedJson)
   return {
     props: {
       post: json.result,

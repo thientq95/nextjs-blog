@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import {server} from "../../utils/server";
 
 const Footer = () => {
     const { configs } = useSelector((state: RootState)  => state.config);
@@ -113,7 +114,7 @@ const Footer = () => {
                     <div className="flex flex-wrap justify-between md:flex-nowrap">
                         <div className="w-full md:w-[23%]">
                             <Link href={``} className="inline-block mb-[17px] mt-[20px]">
-                                <img src={`http://localhost:9091/${logo}`} alt="Logo"/>
+                                <img src={`${server}/${logo}`} alt="Logo"/>
                             </Link>
                             <p className="text-justify">{introText}</p>
                         </div>
