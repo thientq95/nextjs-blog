@@ -48,11 +48,10 @@ const BlogDetailPage = ({ post, postRelateds }: PostType) => {
         margin: auto
        }
        .content-main p {
-        line-height: 25px;
+        line-height: 160%;
+        font-weight: 400;
+        font-size: 18px;
         margin-bottom: 1em;
-       }
-       .content-main .text-big, .content-main p {
-        font: 400 18px arial;
        }
       `}</style>
       <Breadcumb breadcrumbs={breadcrumbs} />

@@ -39,6 +39,19 @@ const DynamicPage = ({ page }) => {
 
   return (
     <Layout>
+      <style>{`
+       .content-main figure.image_resized, .content-main .image_resized {
+        padding: 20px 0;
+        text-align: center;
+        margin: auto
+       }
+       .content-main p {
+        line-height: 160%;
+        font-weight: 400;
+        font-size: 18px;
+        margin-bottom: 1em;
+       }
+      `}</style>
       <Breadcumb breadcrumbs={breadcrumbs} />
       <div className="max-w-[776px] mx-auto pt-[40px] pb-[20px]">
         <h1 className="text-center text-[32px] font-bold leading-[40px] mb-[16px]">{page.title}</h1>
