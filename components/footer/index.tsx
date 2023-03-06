@@ -107,6 +107,7 @@ const Footer = () => {
             ]
         }
     ]
+
     return (
         <footer className="overflow-hidden bg-[#F7FCF0]">
             <div className="pt-3 pb-7">
@@ -131,7 +132,7 @@ const Footer = () => {
                                         </svg>
                                     </div>
                                 </div>
-                                <ul className="hidden md:block">
+                                <ul className={`hidden md:block`}>
                                     {item.subMenu.map((item) => (
                                         <li key={item.id} className="mb-2">
                                             <Link href={``} className="text-sm transition-colors hover:text-orange-600">{item.tenMenu}</Link>

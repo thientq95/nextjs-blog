@@ -50,6 +50,9 @@ const ShoppingCart = () => {
                             <div className={`p-[15px_10px] bg-[#f5f5f5] rounded-[10px] text-[15px] uppercase font-bold`}>Giỏ hàng của bạn</div>
                             {itemCart.map((item) => (
                                 <div className={`relative border-[2px] border-dashed border-[#ebebed] p-[10px] mt-[10px] rounded-[10px] flex justify-between gap-3`}>
+                                    <div className={`absolute top-[5px] left-[5px] cursor-pointer hover:text-red-600`}>
+                                        <i className="fa-solid fa-xmark"></i>
+                                    </div>
                                     <div className={`w-[20%] text-center`}>
                                         <img
                                             src={item.image} alt={item.title}
@@ -60,6 +63,11 @@ const ShoppingCart = () => {
                                         <div className={`text-[13px] ${item.hetHang ? 'block' : 'hidden'}`}>(Sản phẩm này vừa mới hết hàng)</div>
                                         <Link href={``} className={`font-bold`}>{item.title}</Link>
                                         <div className={`text-[13px]`}>Size: <span className={`font-bold`}>{item.size}</span></div>
+                                        <div className={`w-[150px] h-[30px] flex justify-between items-stretch mt-[5px]`}>
+                                            <div className={`bg-[#f7f7f7] text-[#333] leading-[26px] text-center cursor-pointer w-[30%] rounded-[8px_0_0_8px]`}>-</div>
+                                            <input type="number" value={`1`} className={`w-[40%] bg-[#f9f7f7] m-[0_3px] outline-none text-center`}/>
+                                            <div className={`bg-[#f7f7f7] text-[#333] leading-[26px] text-center cursor-pointer w-[30%] rounded-[0_8px_8px_0]`}>+</div>
+                                        </div>
                                     </div>
                                     <div className={`w-[20%] text-right self-center`}>
                                         <div className={`text-[#f36161] font-bold`}>{item.priceNew}</div>
@@ -145,35 +153,75 @@ const ShoppingCart = () => {
                                 <input type="text" name=""
                                        className={`input__control`} placeholder={`Địa chỉ`} />
                             </div>
+                            <div className={`grid grid-cols-2 gap-4 mt-4`}>
+                                <div className={`col-span-1`}>
+                                    <div className={`cursor-pointer relative`}>
+                                        <div className={`flex justify-evenly items-center border-dashed border-[2px] border-[#ebebeb] rounded-[10px] p-[10px] relative hover:border-[#0077b633] hover:bg-[#0077b61a]`}>
+                                            <div className={`w-[48px] shrink-0`}>
+                                                <i className="fas fa-truck text-[30px] text-[#ccc]"></i>
+                                            </div>
+                                            <div>
+                                                <p className={`font-bold font-[15px] w-full`}>TMĐT Tiết Kiệm</p>
+                                                <p className={`italic text-[#999] font-[12px]`}>Dự kiến giao hàng trong 108 giờ</p>
+                                                <div className={`font-bold text-[rgba(209,52,52,0.7)]`}>
+                                                    <i className="fas fa-money-bill-alt"></i>
+                                                    <span className={`ml-2`}>43.996đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={`col-span-1`}>
+                                    <div className={`cursor-pointer relative`}>
+                                        <div className={`flex justify-evenly items-center border-dashed border-[2px] border-[#ebebeb] rounded-[10px] p-[10px] relative hover:border-[#0077b633] hover:bg-[#0077b61a]`}>
+                                            <div className={`w-[48px] shrink-0`}>
+                                                <i className="fas fa-truck text-[30px] text-[#ccc]"></i>
+                                            </div>
+                                            <div>
+                                                <p className={`font-bold font-[15px] w-full`}>TMĐT Nhanh</p>
+                                                <p className={`italic text-[#999] font-[12px]`}>Dự kiến giao hàng trong 84 giờ</p>
+                                                <div className={`font-bold text-[rgba(209,52,52,0.7)]`}>
+                                                    <i className="fas fa-money-bill-alt"></i>
+                                                    <span className={`ml-2`}>51.996đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className={`mb-4`}>
                             <div className={`p-[15px_10px] bg-[#f5f5f5] rounded-[10px] text-[15px] uppercase font-bold`}>Mã giảm giá</div>
                             <div className={`flex mt-4`}>
                                 <input type="text" name=""
                                        className={`input__control`} placeholder={`Nhập mã giảm giá nếu có`} />
-                                <button className={`inline-block w-[150px] text-sm text-white uppercase transition duration-150 ease-in-out bg-red-600 rounded`}>Áp dụng</button>
+                                <button className={`inline-block w-[150px] text-sm text-white uppercase transition duration-150 ease-in-out bg-red-600 rounded-[0_4px_4px_0]`}>Áp dụng</button>
                             </div>
                         </div>
                         <div className={`mb-4`}>
                             <div className={`p-[15px_10px] bg-[#f5f5f5] rounded-[10px] text-[15px] uppercase font-bold`}>Hình thức thanh toán</div>
                             <div className={`mt-4`}>
-                                <div className={`mb-[5px] bg-[rgba(38,185,154,0.04)] rounded-[5px]`}>
-                                    <div className={`cursor-pointer p-[6px_12px] leading-[30px]`}>
+                                <div className={`flex items-center mb-[5px] bg-[rgba(38,185,154,0.04)] rounded-[5px] p-[6px_12px] gap-3`}>
+                                    <input type="radio" name={`payment`}/>
+                                    <div className={`cursor-pointer leading-[30px]`}>
                                         Thanh toán online qua cổng Upay
                                     </div>
                                 </div>
-                                <div className={`mb-[5px] bg-[rgba(38,185,154,0.04)] rounded-[5px]`}>
-                                    <div className={`cursor-pointer p-[6px_12px] leading-[30px]`}>
+                                <div className={`flex items-center mb-[5px] bg-[rgba(38,185,154,0.04)] rounded-[5px] p-[6px_12px] gap-3`}>
+                                    <input type="radio" name={`payment`}/>
+                                    <div className={`cursor-pointer leading-[30px]`}>
                                         Thanh toán online qua cổng Alepay
                                     </div>
                                 </div>
-                                <div className={`mb-[5px] bg-[rgba(38,185,154,0.04)] rounded-[5px]`}>
-                                    <div className={`cursor-pointer p-[6px_12px] leading-[30px]`}>
+                                <div className={`flex items-center mb-[5px] bg-[rgba(38,185,154,0.04)] rounded-[5px] p-[6px_12px] gap-3`}>
+                                    <input type="radio" name={`payment`}/>
+                                    <div className={`cursor-pointer leading-[30px]`}>
                                         Thanh toán khi nhận hàng (COD)
                                     </div>
                                 </div>
-                                <div className={`mb-[5px] bg-[rgba(38,185,154,0.04)] rounded-[5px]`}>
-                                    <div className={`cursor-pointer p-[6px_12px] leading-[30px]`}>
+                                <div className={`flex items-center mb-[5px] bg-[rgba(38,185,154,0.04)] rounded-[5px] p-[6px_12px] gap-3`}>
+                                    <input type="radio" name={`payment`}/>
+                                    <div className={`cursor-pointer leading-[30px]`}>
                                         Thanh toán qua tài khoản ngân hàng
                                     </div>
                                 </div>

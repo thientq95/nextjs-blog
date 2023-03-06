@@ -56,7 +56,7 @@ const Header = ({configs, menu}) => {
                             <Link href={'/account/login'}>
                                 <img src="/images/icons/user.png" alt="alt"/>
                             </Link>
-                            <Link href={`shopping-cart`} className="relative ml-5">
+                            <Link href={`/shopping-cart`} className="relative ml-5">
                                 <img src="/images/icons/shopping.png"
                                      alt="alt"/>
                                 <span

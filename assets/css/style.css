@@ -64,6 +64,10 @@ body {
     padding-left: 15px;
 }
 
+.thumbs-slide-product .swiper-slide-thumb-active {
+    border-color: red;
+}
+
 @media only screen and (max-width: 991px) {
     .btn__link {
         padding: 0;

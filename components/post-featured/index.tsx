@@ -23,7 +23,7 @@ const PostFeatured = ({ posts }) => {
                                     <div className={`mt-4 mb-2 text-base text-gray-700`}>
                                         {format(item.createdDate, "dd/MM/yyyy")}
                                     </div>
-                                    <Link href={`/blog/${item.seoAlias}`} className={`mb-2 text-base font-medium text-[#000] line-clamp-2`}>
+                                    <Link href={`/blog/${item.seoAlias}`} className={`mb-2 text-base font-bold text-[#000] line-clamp-2`}>
                                     {item.title}
                                     </Link>
                                     <div className={`text-sm text-black line-clamp-3`}>{item.description}</div>
@@ -43,7 +43,7 @@ const PostFeatured = ({ posts }) => {
                                 </Link>
                                 <div className={`mt-4 mb-2 text-base text-gray-700`}>{format(item.createdDate, "dd/mm/yyyy")}</div>
                                 <div
-                                    className={`mb-2 text-base font-medium text-[#000] line-clamp-2`}>{item.title}</div>
+                                    className={`mb-2 text-base font-bold text-[#000] line-clamp-2`}>{item.title}</div>
                                 <div className={`text-sm text-black line-clamp-3`}>{item.description}</div>
                                 <div className="flex mt-5"><Link
                                     className="border-0 md:border p-0 md:px-[10px] md:py-[6px] border-[#815030] text-[#815030] text-lg transition hover:bg-[#815030] hover:text-white block mx-auto w-fit"

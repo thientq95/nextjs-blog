@@ -4,10 +4,17 @@ import Layout from "../../layouts/Main";
 import Breadcumb from "../../components/breadcumb";
 import Link from "next/link";
 import { Product } from "../../types";
-
+import {Swiper, SwiperSlide} from "swiper/react";
+import {useState} from "react";
+import {FreeMode, Navigation, Thumbs} from "swiper";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 type ProductType = {
   product: Product;
 };
+
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const pid = query.pid;
@@ -33,13 +40,70 @@ const Product = ({ product }: ProductType) => {
       href: "",
     },
   ];
+
+  const imgSlide = [
+    {
+      id: 1,
+      name: `slide `,
+      image: `/images/product.webp`,
+    },
+    {
+      id: 2,
+      name: `slide `,
+      image: `/images/product.webp`,
+    },
+    {
+      id: 3,
+      name: `slide `,
+      image: `/images/product.webp`,
+    },
+    {
+      id: 4,
+      name: `slide `,
+      image: `/images/product.webp`,
+    },
+    {
+      id: 5,
+      name: `slide `,
+      image: `/images/product.webp`,
+    }
+  ]
   // if (!product) return <h1>Lỗi</h1>;
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <Layout>
       <Breadcumb breadcrumbs={breadcrumbs} />
       <section className={`container`}>
         <div className={`flex flex-wrap justify-between mt-8`}>
-          <div className={`w-full lg:w-1/2`}></div>
+          <div className={`w-full lg:w-1/2`}>
+            <Swiper
+                spaceBetween={0}
+                navigation={true}
+                thumbs={{ swiper: thumbsSwiper }}
+                modules={[FreeMode, Navigation, Thumbs]}
+            >
+              {imgSlide.map((item) => (
+                  <SwiperSlide className={`!h-[500px] select-none`}>
+                    <img src={item.image} className={`object-scale-down w-full h-full`}/>
+                  </SwiperSlide>
+              ))}
+            </Swiper>
+            <Swiper
+                onSwiper={setThumbsSwiper}
+                spaceBetween={15}
+                slidesPerView={4}
+                freeMode={true}
+                watchSlidesProgress={true}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mt-4 thumbs-slide-product"
+            >
+              {imgSlide.map((item) => (
+                  <SwiperSlide className={`!h-[120px] select-none p-[10px] border-dashed border border-[#eaeaea]`}>
+                    <img src={item.image} className={`object-scale-down w-full h-full`}/>
+                  </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
           <div className={`min-w-0 lg:flex-1 lg:ml-5`}>
             <div className="text-2xl font-bold text-black">{product.name}</div>
             <div className="my-2 text-base text-[#845536]">

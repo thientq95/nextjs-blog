@@ -109,7 +109,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, router, data } = this.props;
     return (
-      <ThemeProvider attribute="class" theme={`light`} storageKey="theme" enableSystem>
+      // <ThemeProvider attribute="class" theme={`light`} storageKey="theme" enableSystem>
         <LazyMotion features={domAnimation}>
           <Header configs={data.configs} menu={data.menu} />
           <AnimatePresence
@@ -133,7 +133,7 @@ class MyApp extends App {
           </AnimatePresence>
           <Footer />
         </LazyMotion>
-       </ThemeProvider>
+       // </ThemeProvider>
     );
   }
 }

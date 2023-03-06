@@ -44,7 +44,7 @@ const ProductPage = ({ products, total, page }) => {
           </h2>
           <div className="flex flex-wrap -mx-4">
             {products.map((item) => (
-              <div key={item.id} className="flex flex-col w-1/2 px-4 mb-5 lg:w-1/5 md:w-1/3">
+              <div key={item.id} className="flex flex-col w-1/2 px-4 mb-5 lg:w-1/5 md:w-1/3 mb-4">
                 <ProductItem key={item.id} item={item} />
               </div>
             ))}
