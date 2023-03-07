@@ -94,13 +94,19 @@ class MyApp extends App {
       configs.find((item) => item.key === "C22_MAIN_MENU").value
     );
     const mainMenuRes = await fetch(`${server}/api/v1/web/menu/${mainMenu[0].id}`);
+
     const mainMenuResponse = await mainMenuRes.json();
+
     // const dispatch = useDispatch();
     // dispatch(setConfigs(configs))
+    const listDataParent = mainMenuResponse.result.filter(x => x.parentId === null)
+    listDataParent.forEach( item => {
+      item.children = mainMenuResponse.result.filter(x => x.parentId === item.id) ?? [];
+    });
     return {
       data: {
         configs: configs,
-        menu: mainMenuResponse.result,
+        menu: listDataParent,
       },
       pageProps,
     };
@@ -136,6 +142,7 @@ class MyApp extends App {
        // </ThemeProvider>
     );
   }
+
 }
 
 export default wrapper.withRedux(MyApp);
