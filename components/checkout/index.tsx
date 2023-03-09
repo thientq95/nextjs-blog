@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { server } from "../../utils/server";
 import { postData } from "../../utils/services";
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import { clearCart } from "../../store/reducers/cart";
 
 type CheckoutForm = {
   firstName: string;
@@ -28,6 +29,7 @@ type OrderDetail = {
 };
 
 const Checkout = () => {
+    const dispatch = useDispatch();
   const { cartItems } = useSelector((state: RootState) => state.cart);
 
   const [formData, setFormData] = useState({
@@ -63,8 +65,8 @@ const Checkout = () => {
         orderDetails: orderDetails
     }
     const res = await postData(`${server}/api/v1/web/order`, data);
-    console.log(res);
-    if (data) {
+    if (res) {
+        dispatch(clearCart());
         // redirect('/checkout');
         window.location.replace('/checkout-page')
     }
