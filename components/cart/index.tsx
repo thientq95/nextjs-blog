@@ -46,9 +46,9 @@ const Cart = () => {
             <span>Tổng:</span>
             <span>{priceTotal() && priceTotal().toLocaleString()}đ</span>
           </div>
-          <button className="inline-block w-full py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out bg-red-600 rounded shadow-md px-7 active:shadow-lg hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800">
+          {/* <button className="inline-block w-full py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out bg-red-600 rounded shadow-md px-7 active:shadow-lg hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800">
             Thanh toán
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

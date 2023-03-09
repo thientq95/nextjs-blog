@@ -6,7 +6,7 @@ export type GtagEventType = {
 };
 
 export type ProductStoreType = {
-  id: string;
+  id: number;
   name: string;
   price: number;
   count: number;
@@ -15,7 +15,7 @@ export type ProductStoreType = {
 };
 
 export type Product = {
-  id: string;
+  id: number;
   name: string;
   price: number;
   imageUrl: string;
