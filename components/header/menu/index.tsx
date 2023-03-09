@@ -12,7 +12,7 @@ const Menu = ({menuItem}) => {
                                   className={`text-[16px] text-[#101010] flex items-center justify-center min-h-[22px] capitalize relative w-full border-b border-transparent`}>{`${item.name}`}</Link>
                             <ul className={`submenu`}>
                                 {item.children.map((itemSub) => (
-                                    <li key={item.id}>
+                                    <li key={itemSub.id}>
                                         <Link href={`${itemSub.link}`} title={`${itemSub.name}`} className={`item`}>{itemSub.name}</Link>
                                     </li>
                                 ))}

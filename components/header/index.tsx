@@ -1,9 +1,10 @@
 import Link from "next/link";
 import {useEffect, useRef, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setConfigs} from "../../store/reducers/config";
 import Menu from "./menu";
 import {server} from "../../utils/server";
+import { RootState } from "../../store";
 const Header = ({configs, menu}) => {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -15,7 +16,12 @@ const Header = ({configs, menu}) => {
     const closeMenu = () => {
         setMenuOpen(false);
     }
+
+    const { cartItems } = useSelector((state: RootState)  => state.cart);
+
     useOnClickOutside(navRef, closeMenu);
+
+    
 
     function useOnClickOutside(ref, handler) {
         useEffect(
@@ -87,7 +93,7 @@ const Header = ({configs, menu}) => {
                                 <img src="/images/icons/shopping.png"
                                      alt="alt"/>
                                 <span
-                                    className="w-4 h-4 rounded-full text-center text-[7px] font-semibold leading-4 text-white bg-[#052F1B] block absolute -right-[5px] -top-[5px]">0</span>
+                                    className="w-4 h-4 rounded-full text-center text-[7px] font-semibold leading-4 text-white bg-[#052F1B] block absolute -right-[5px] -top-[5px]">{cartItems.length}</span>
                             </Link>
                             <div onClick={() => setMenuOpen(true)}
                                 className={`flex lg:hidden ml-[20px] relative w-[24px] h-[24px] cursor-pointer items-center text-center`}>

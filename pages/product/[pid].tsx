@@ -4,17 +4,18 @@ import Layout from "../../layouts/Main";
 import Breadcumb from "../../components/breadcumb";
 import Link from "next/link";
 import { Product } from "../../types";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {useState} from "react";
-import {FreeMode, Navigation, Thumbs} from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useState } from "react";
+import { FreeMode, Navigation, Thumbs } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import ProductImage from "../../components/product-image";
+import AddToCart from "../../components/add-cart";
 type ProductType = {
   product: Product;
 };
-
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const pid = query.pid;
@@ -41,68 +42,27 @@ const Product = ({ product }: ProductType) => {
     },
   ];
 
-  const imgSlide = [
-    {
-      id: 1,
-      name: `slide `,
-      image: `/images/product.webp`,
-    },
-    {
-      id: 2,
-      name: `slide `,
-      image: `/images/product.webp`,
-    },
-    {
-      id: 3,
-      name: `slide `,
-      image: `/images/product.webp`,
-    },
-    {
-      id: 4,
-      name: `slide `,
-      image: `/images/product.webp`,
-    },
-    {
-      id: 5,
-      name: `slide `,
-      image: `/images/product.webp`,
-    }
-  ]
   // if (!product) return <h1>Lỗi</h1>;
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <Layout>
+      <style>{`
+       .content-main figure.image_resized, .content-main .image_resized {
+        padding: 20px 0;
+        text-align: center;
+        margin: auto
+       }
+       .content-main p {
+        line-height: 160%;
+        font-weight: 400;
+        font-size: 18px;
+        margin-bottom: 1em;
+       }
+      `}</style>
       <Breadcumb breadcrumbs={breadcrumbs} />
       <section className={`container`}>
         <div className={`flex flex-wrap justify-between mt-8`}>
           <div className={`w-full lg:w-1/2`}>
-            <Swiper
-                spaceBetween={0}
-                navigation={true}
-                thumbs={{ swiper: thumbsSwiper }}
-                modules={[FreeMode, Navigation, Thumbs]}
-            >
-              {imgSlide.map((item) => (
-                  <SwiperSlide className={`!h-[500px] select-none`}>
-                    <img src={item.image} className={`object-scale-down w-full h-full`}/>
-                  </SwiperSlide>
-              ))}
-            </Swiper>
-            <Swiper
-                onSwiper={setThumbsSwiper}
-                spaceBetween={15}
-                slidesPerView={4}
-                freeMode={true}
-                watchSlidesProgress={true}
-                modules={[FreeMode, Navigation, Thumbs]}
-                className="mt-4 thumbs-slide-product"
-            >
-              {imgSlide.map((item) => (
-                  <SwiperSlide className={`!h-[120px] select-none p-[10px] border-dashed border border-[#eaeaea]`}>
-                    <img src={item.image} className={`object-scale-down w-full h-full`}/>
-                  </SwiperSlide>
-              ))}
-            </Swiper>
+            <ProductImage imgSlide={product.productImages} />
           </div>
           <div className={`min-w-0 lg:flex-1 lg:ml-5`}>
             <div className="text-2xl font-bold text-black">{product.name}</div>
@@ -114,7 +74,8 @@ const Product = ({ product }: ProductType) => {
               <div className="flex flex-col">
                 <div className="inline-flex">
                   <p className="text-lg font-bold text-[rgb(38,79,49)]">
-                    {product && product.price && product.price.toLocaleString()}đ
+                    {product && product.price && product.price.toLocaleString()}
+                    đ
                   </p>
                   {/* <span className="px-1 text-lg">-</span> <p
                                     className="text-lg font-bold text-[rgb(38,79,49)]"> 1.658.000đ</p> */}
@@ -174,49 +135,7 @@ const Product = ({ product }: ProductType) => {
             </div>
             <div className="h-[1px] bg-[#845536] bg-opacity-20 my-4"></div>
             <div className="py-2">
-              <div className="py-0">
-                <div className="mb-2 text-sm font-semibold">Số lượng:</div>
-                <div className="flex items-center">
-                  <div className="flex justify-between w-36 border-[#BABABA] border rounded-[3px]">
-                    <button
-                      type="button"
-                      className="text-[#C4C4C4] hover:text-black text-lg font-extrabold w-8 h-8 inline-flex justify-center items-center"
-                      data-action="minus"
-                    >
-                      -
-                    </button>
-                    <input
-                      type="text"
-                      className="flex-1 border-y-0 text-center border-[#BABABA] min-w-0 h-8"
-                    />
-                    <button
-                      type="button"
-                      className="text-[#C4C4C4] hover:text-black text-lg font-extrabold w-8 h-8 inline-flex justify-center items-center"
-                      data-action="plus"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-between mt-4 uppercase">
-                <button
-                  type="button"
-                  className="flex flex-1 justify-center items-center rounded-[3px] py-3 bg-[linear-gradient(90deg,#B78260_-14.95%,#815030_66.53%)]"
-                >
-                  <span className="text-lg font-extrabold text-white">
-                    Mua ngay
-                  </span>
-                </button>
-                <button
-                  type="button"
-                  className="flex border border-[#B78260] rounded-[3px] ml-4 flex-1 items-center justify-center py-3"
-                >
-                  <span className="text-lg font-extrabold text-[#845536]">
-                    Thêm vào giỏ hàng
-                  </span>
-                </button>
-              </div>
+              <AddToCart product={product} />
             </div>
           </div>
         </div>
@@ -237,8 +156,8 @@ const Product = ({ product }: ProductType) => {
             Đánh giá
           </div>
         </ul>
-        <div className="py-16">
-          <div dangerouslySetInnerHTML={{ __html: product.bodyHtml }}></div>
+        <div className="py-16 max-w-[776px] mx-auto pt-[40px] pb-[20px]">
+          <div className="content-main" dangerouslySetInnerHTML={{ __html: product.bodyPlain }}></div>
         </div>
         <div className="mb-10 text-4xl font-bold text-center text-[rgb(38,79,49)]">
           Chúng tôi tìm thấy các sản phẩm khác, bạn có thể thích!

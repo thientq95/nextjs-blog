@@ -8,11 +8,10 @@ export type GtagEventType = {
 export type ProductStoreType = {
   id: string;
   name: string;
-  thumb: string;
   price: number;
   count: number;
-  color: string;
-  size: string;
+  thumb: string;
+  alias: string;
 };
 
 export type Product = {
@@ -29,7 +28,14 @@ export type Product = {
   publishedAt: number;
   publishedScope: string;
   productCategory: ProductCategory;
+  productImages: ProductImage[];
 };
+
+export type ProductImage = {
+  id: number;
+  src: string;
+  fileName: string;
+}
 
 export type ProductCategory = {
   id: number;
