@@ -36,6 +36,8 @@ const CartItem = ({ id, name, count, price, thumb, alias }) => {
       count,
     };
 
+    console.warn(payload)
+
     dispatch(setCount(payload));
   };
   return (

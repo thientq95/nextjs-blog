@@ -10,11 +10,7 @@ const initialState: CartTypes = {
 };
 
 const indexSameProduct = (state: CartTypes, action: ProductStoreType) => {
-  const sameProduct = (product: ProductStoreType) => {
-    product.id === action.id;
-  };
-
-  return state.cartItems.findIndex(sameProduct);
+  return state.cartItems.findIndex(item => item.id === action.id);
 };
 
 type AddProductType = {
